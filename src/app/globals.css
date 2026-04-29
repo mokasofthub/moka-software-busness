@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Page structure */
+    --bg-base: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --bg-section: #eff6ff;
+    /* Typography */
+    --text-primary: #0f172a;
+    --text-secondary: #1e293b;
+    --text-muted: #475569;
+    /* UI elements */
+    --border-color: #94a3b8;
+    --input-bg: #f1f5f9;
+    --navbar-scrolled: rgba(255, 255, 255, 0.98);
+    --ring-offset-color: #f8fafc;
+    /* Card elevation */
+    --card-shadow: 0 2px 8px rgba(15, 23, 42, 0.09), 0 6px 20px rgba(15, 23, 42, 0.07);
+    --card-shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.16), 0 20px 40px rgba(15, 23, 42, 0.11);
+    /* Featured cards */
+    --card-featured-bg: linear-gradient(135deg, #eef2ff, #ecfeff);
+    --card-featured-border: rgba(99, 102, 241, 0.50);
+    /* Hero glow */
+    --hero-glow-1: rgba(99, 102, 241, 0.18);
+    --hero-glow-2: rgba(6, 182, 212, 0.12);
+  }
+
+  .dark {
+    /* Page structure */
+    --bg-base: #111827;
+    --bg-card: #1f2937;
+    --bg-card-hover: #273449;
+    --bg-section: rgba(255, 255, 255, 0.015);
+    /* Typography */
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #94a3b8;
+    /* UI elements */
+    --border-color: rgba(55, 65, 81, 0.7);
+    --input-bg: rgba(255, 255, 255, 0.04);
+    --navbar-scrolled: rgba(17, 24, 39, 0.85);
+    --ring-offset-color: #111827;
+    /* Card elevation */
+    --card-shadow: none;
+    --card-shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.5);
+    /* Featured cards */
+    --card-featured-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.13), rgba(6, 182, 212, 0.08));
+    --card-featured-border: rgba(99, 102, 241, 0.45);
+    /* Hero glow */
+    --hero-glow-1: rgba(99, 102, 241, 0.22);
+    --hero-glow-2: rgba(6, 182, 212, 0.15);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  }
+
+  .hero-radial {
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 20%, var(--hero-glow-1) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, var(--hero-glow-2) 0%, transparent 55%);
+  }
+
+  .card-featured {
+    background: var(--card-featured-bg) !important;
+    border-color: var(--card-featured-border) !important;
+  }
+
+  /* 3D card base */
+  .card-3d {
+    will-change: transform;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .card-3d-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+    mix-blend-mode: overlay;
+  }
+
+  /* Available badge — explicit per-mode styles */
+  .badge-available {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    border-color: transparent;
+    color: #ffffff;
+  }
+  .badge-available .badge-dot {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+  .dark .badge-available {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #34d399;
+  }
+  .dark .badge-available .badge-dot {
+    background-color: #34d399;
+  }
+
+  .card-featured::before {
+    opacity: 1 !important;
+  }
+
+  .card-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .card-line:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Animations */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.4); }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { top: 6px; opacity: 1; }
+  80%       { top: 20px; opacity: 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 1.8s infinite;
+}
+
+/* Scroll-triggered fade-up */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Form select arrow */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ─── Dot grid background ─── */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--border-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Avatar glow ring ─── */
+.avatar-glow {
+  box-shadow:
+    0 0 0 4px var(--bg-base),
+    0 0 0 8px rgba(99, 102, 241, 0.3),
+    0 0 50px rgba(99, 102, 241, 0.25),
+    0 0 90px rgba(6, 182, 212, 0.1);
+}
+
+/* ─── Float animations for hero cards ─── */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+/* ─── Gradient stat card shimmer ─── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}

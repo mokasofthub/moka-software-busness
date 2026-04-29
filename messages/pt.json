@@ -1,0 +1,386 @@
+{
+  "nav": {
+    "about": "Sobre",
+    "services": "Serviços",
+    "skills": "Habilidades",
+    "projects": "Projetos",
+    "pricing": "Preços",
+    "contact": "Contato",
+    "hire": "Me contratar"
+  },
+  "hero": {
+    "badge": "Disponível para novos projetos",
+    "title": "Engenheiro de Software Principal",
+    "sub": "Projeto e entrego <strong>sistemas full-stack de produção</strong> — APIs REST, arquiteturas cloud-native na <strong>AWS</strong> & <strong>Azure</strong>, frontends React e mobile, e os pipelines DevOps que os entregam de forma confiável.",
+    "cta_primary": "Ver meu trabalho",
+    "cta_secondary": "Entrar em contato",
+    "scroll": "Rolar",
+    "stat_years": "Anos de experiência",
+    "stat_projects": "Projetos entregues",
+    "stat_uptime": "SLA de uptime",
+    "stat_clients": "Clientes satisfeitos",
+    "headline1": "Construir, Escalar, Crescer.",
+    "headline2": "Software que persiste."
+  },
+  "about": {
+    "label": "Sobre mim",
+    "headline": "Engenheiro de Software Principal",
+    "p1": "Sou Engenheiro de Software Principal com mais de 10 anos construindo sistemas de produção full-stack. Projeto e entrego APIs REST, microsserviços e backends orientados a eventos — junto com infraestrutura cloud-native, automação DevOps e frontends web e mobile de alta qualidade.",
+    "p2": "De plataformas SaaS greenfield à modernização de backend empresarial — trago responsabilidade de nível sênior, arquitetura limpa e entrega de ponta a ponta. Colaboro com startups e scale-ups na América do Norte e Europa para levar produtos da ideia à produção.",
+    "cta": "Vamos colaborar",
+    "fact_location": "Remoto — EUA & Europa",
+    "fact_turnaround": "Entrega rápida",
+    "fact_partnership": "Parcerias de longo prazo",
+    "tags": [
+      "Desenvolvimento Full-Stack",
+      "APIs REST e microsserviços",
+      "Microsserviços",
+      "Arquitetura Cloud",
+      "Apps Mobile",
+      "DevOps & CI/CD",
+      "Sistemas Backend",
+      "Liderança Técnica"
+    ]
+  },
+  "services": {
+    "label": "O que faço",
+    "headline": "Serviços de engenharia de ponta a ponta",
+    "subheading": "Do frontend à infraestrutura cloud — cubro todo o ciclo de entrega.",
+    "items": [
+      {
+        "title": "Automação de Pipelines CI/CD",
+        "description": "Projete e implemente pipelines totalmente automatizados com GitHub Actions, Jenkins ou GitLab CI. Reduza ciclos de release de dias para minutos."
+      },
+      {
+        "title": "Arquitetura Cloud (AWS / GCP / Azure)",
+        "description": "Arquitete e migre cargas de trabalho para a nuvem usando serviços gerenciados, VPCs, IAM e infraestrutura como código com Terraform ou Pulumi."
+      },
+      {
+        "title": "Kubernetes & Orquestração de Contêineres",
+        "description": "Clusters Kubernetes de nível produção com Helm, autoscaling, service meshes e deploys sem tempo de inatividade."
+      },
+      {
+        "title": "Aplicações Web Full-Stack",
+        "description": "Crie aplicações web de alto desempenho e acessíveis com React, Next.js, Vue ou Angular no frontend e Node.js, Java ou Python no backend."
+      },
+      {
+        "title": "Apps Móveis (iOS & Android)",
+        "description": "Aplicações móveis multiplataforma com React Native ou Flutter — publicadas na App Store e no Google Play a partir de uma única base de código."
+      },
+      {
+        "title": "API Backend & Microsserviços",
+        "description": "Projete e construa APIs RESTful e GraphQL, microsserviços orientados a eventos e sistemas distribuídos com Java Spring Boot, Node.js ou Go."
+      },
+      {
+        "title": "Infraestrutura como Código (IaC)",
+        "description": "Automatize toda a sua infraestrutura com Terraform, Pulumi ou AWS CDK. Ambientes reproduzíveis e versionados em todos os estágios."
+      },
+      {
+        "title": "Observabilidade & Monitoramento",
+        "description": "Implemente observabilidade de ponta a ponta com Prometheus, Grafana, Datadog ou a stack ELK — métricas, logs, rastreamentos e alertas."
+      },
+      {
+        "title": "Segurança & Conformidade",
+        "description": "Integre varredura de segurança, gestão de segredos, RBAC e verificações de conformidade (SOC 2, HIPAA) ao seu workflow de desenvolvimento e release."
+      },
+      {
+        "title": "Design & Otimização de Banco de Dados",
+        "description": "Projete schemas relacionais e NoSQL escaláveis, otimize consultas lentas, configure replicação e migre dados com segurança sem tempo de inatividade."
+      },
+      {
+        "title": "Engenharia de Performance",
+        "description": "Faça profiling e otimize tempos de carregamento frontend, throughput de APIs e custos de infraestrutura. Alcance tempos de resposta abaixo de 200 ms em escala."
+      },
+      {
+        "title": "Liderança Técnica & Mentoria",
+        "description": "Suporte de engenharia de nível staff incorporado — revisões de código, decisões de arquitetura, processos de equipe e mentoria de desenvolvedores."
+      }
+    ]
+  },
+  "skills": {
+    "label": "Stack tecnológica",
+    "headline": "Ferramentas & Tecnologias",
+    "tier1": "Especialista",
+    "tier2": "Proficiente",
+    "tier3": "Familiarizado"
+  },
+  "projects": {
+    "label": "Trabalho em destaque",
+    "headline": "Projetos selecionados",
+    "subheading": "Uma amostra de projetos recentes.",
+    "items": [
+      {
+        "title": "Plataforma CI/CD Empresarial",
+        "description": "Projetei um pipeline GitOps multi-ambiente que gerencia mais de 200 deploys diários em 15 microsserviços com rollouts sem tempo de inatividade.",
+        "tech": [
+          "GitHub Actions",
+          "ArgoCD",
+          "Kubernetes",
+          "Terraform"
+        ]
+      },
+      {
+        "title": "Plataforma SaaS Cloud-Native",
+        "description": "Arquitetei e construí um produto SaaS full-stack na AWS — frontend React, API Node.js, PostgreSQL, implantado no EKS com autoscaling.",
+        "tech": [
+          "React",
+          "Node.js",
+          "AWS EKS",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "title": "Backend SaaS Multi-Tenant",
+        "description": "Projetei e entreguei uma plataforma REST API multi-tenant na AWS ECS — isolamento PostgreSQL por schema, cache Redis, RBAC e infraestrutura Terraform.",
+        "tech": [
+          "NestJS",
+          "PostgreSQL",
+          "Redis",
+          "AWS ECS",
+          "Terraform"
+        ]
+      }
+    ],
+    "view_code": "Ver código",
+    "live_demo": "Demo ao vivo",
+    "view_case_study": "Ver estudo de caso",
+    "modal_challenge": "O Desafio",
+    "modal_solution": "A Solução",
+    "modal_outcomes": "Resultados principais",
+    "modal_cta": "Iniciar um projeto similar",
+    "case_studies": [
+      {
+        "challenge": "Uma organização de engenharia em crescimento com 15 microsserviços fazia deploy manualmente — os deploys levavam 3+ horas, rollbacks eram arriscados, e drift entre ambientes causava incidentes repetidos em produção.",
+        "solution": "Projetei um pipeline GitOps completamente automatizado com GitHub Actions para CI e ArgoCD para entrega contínua no Kubernetes. Terraform gerenciou toda a infraestrutura nos ambientes dev, staging e prod. Cada serviço teve pipelines isolados com gates de testes automatizados, scan de segurança e deploys blue/green sem downtime.",
+        "outcome": [
+          "200+ deploys diários gerenciados automaticamente",
+          "Ciclo de release reduzido de 3 horas para menos de 8 minutos",
+          "Zero downtime não planejado em 6 meses pós-lançamento",
+          "Drift de infraestrutura eliminado via Terraform",
+          "12 engenheiros integrados em 1 semana"
+        ]
+      },
+      {
+        "challenge": "Uma startup B2B SaaS precisava ir do zero a uma plataforma pronta para produção em menos de 4 meses — com multi-tenancy, funcionalidades em tempo real e capacidade de escalar para milhares de usuários desde o primeiro dia.",
+        "solution": "Arquitetei e construí o stack completo: frontend Next.js + React, API REST Node.js com auth JWT e controle de acesso baseado em papéis, PostgreSQL com row-level security para multi-tenancy, e uma camada WebSocket para atualizações em tempo real. Implantado no AWS EKS com Helm, autoscaling horizontal e CDN CloudFront.",
+        "outcome": [
+          "Lançado em produção em 14 semanas de ponta a ponta",
+          "5.000 usuários simultâneos no dia do lançamento sem incidentes",
+          "Latência P99 da API abaixo de 120 ms em todos os endpoints",
+          "O autoscaling gerenciou um pico de tráfego 10× durante um lançamento de produto",
+          "Auditoria SOC 2 Tipo I aprovada 3 meses após o go-live"
+        ]
+      },
+      {
+        "challenge": "Uma startup B2B SaaS precisava de um backend REST multi-tenant capaz de isolar dados por cliente, aplicar controle de acesso baseado em papéis e escalar horizontalmente — com prazo rígido de lançamento de 3 meses.",
+        "solution": "Projetei uma arquitetura schema-por-tenant no PostgreSQL para isolamento estrito de dados. Construí uma API REST NestJS com JWT + RBAC, uma camada de cache Redis para leituras de alta frequência, e implantei o stack completo no AWS ECS Fargate usando Terraform IaC. Pipeline CI/CD do GitHub Actions automatizou testes, linting e deploys blue/green a cada merge.",
+        "outcome": [
+          "30+ tenants enterprise integrados sem incidentes de vazamento de dados",
+          "Latência P95 da API abaixo de 80 ms com 500 usuários simultâneos",
+          "99,9 % de disponibilidade nos primeiros 12 meses pós-lançamento",
+          "Provisionamento de infraestrutura reduzido de dias para 12 minutos via Terraform",
+          "Deploys blue/green sem downtime a cada release"
+        ]
+      }
+    ]
+  },
+  "pricing": {
+    "label": "Preços",
+    "headline": "Preços transparentes e orientados a valor",
+    "subheading": "Tarifas do mercado americano para engenharia nível Principal. Preços em USD.",
+    "tab_quick": "Correções rápidas",
+    "tab_packages": "Pacotes de projeto",
+    "tab_retainer": "Por hora & Mensal",
+    "popular": "Mais popular",
+    "note_estimate": "O preço final depende do escopo. Chamada de definição gratuita incluída.",
+    "cta_start": "Começar",
+    "cta_quote": "Solicitar orçamento",
+    "cta_book": "Agendar chamada",
+    "quick_items": [
+      {
+        "icon": "⚡",
+        "title": "Corrigir Pipeline CI/CD",
+        "price": "$999",
+        "description": "Depure e repare um pipeline CI/CD com defeito. Inclui análise de causa raiz e documentação.",
+        "items": [
+          "GitHub Actions / Jenkins / GitLab CI",
+          "Auditoria & diagnóstico do pipeline",
+          "Correção + verificação",
+          "Entrega em 2–3 dias úteis"
+        ]
+      },
+      {
+        "icon": "🐳",
+        "title": "Dockerizar sua aplicação",
+        "price": "$699",
+        "description": "Containerize sua aplicação existente com Dockerfiles multi-estágio e configuração docker-compose.",
+        "items": [
+          "Dockerfile multi-estágio",
+          "docker-compose para dev local",
+          "Otimização do tamanho da imagem",
+          "Push para registry (Docker Hub / ECR)"
+        ]
+      },
+      {
+        "icon": "☁️",
+        "title": "Configuração AWS / GCP",
+        "price": "$899",
+        "description": "Provisione e configure um ambiente cloud pronto para produção com VPC, IAM e redes básicas.",
+        "items": [
+          "VPC + sub-redes + grupos de segurança",
+          "Funções IAM & política de menor privilégio",
+          "Configuração EC2 / Cloud Run",
+          "Monitoramento & alertas básicos"
+        ]
+      },
+      {
+        "icon": "🐛",
+        "title": "Corrigir Bug Frontend",
+        "price": "$599",
+        "description": "Diagnostique e corrija um bug crítico ou problema de performance na sua aplicação React, Vue ou Next.js.",
+        "items": [
+          "Análise de causa raiz",
+          "React / Vue / Next.js / Angular",
+          "Correção + teste de regressão",
+          "Entrega em 1–2 dias úteis"
+        ]
+      }
+    ],
+    "package_items": [
+      {
+        "icon": "🔄",
+        "title": "Automação CI/CD",
+        "price": "$3,500–$8,000",
+        "description": "Automação completa do pipeline do commit até o deploy em produção.",
+        "items": [
+          "Design de pipeline multi-estágio",
+          "Automação de test, build e deploy",
+          "Gestão de segredos",
+          "Rollback & alertas"
+        ]
+      },
+      {
+        "icon": "☁️",
+        "title": "Migração Cloud",
+        "price": "$6,000–$15,000",
+        "description": "Lift-and-shift ou re-arquitetura das suas cargas de trabalho para AWS, GCP ou Azure.",
+        "items": [
+          "Design & planejamento de arquitetura",
+          "IaC com Terraform",
+          "Migração sem tempo de inatividade",
+          "Revisão de otimização de custos"
+        ]
+      },
+      {
+        "icon": "☸️",
+        "title": "Plataforma Kubernetes",
+        "price": "$4,000–$9,000",
+        "description": "Cluster Kubernetes de nível produção com tudo que você precisa para operar com confiança.",
+        "items": [
+          "Configuração de cluster (EKS / GKE / AKS)",
+          "Helm charts & GitOps",
+          "Autoscaling & limites de recursos",
+          "Stack de observabilidade"
+        ]
+      },
+      {
+        "icon": "🌐",
+        "title": "App Web Full-Stack",
+        "price": "a partir de $5,000",
+        "description": "Aplicação web personalizada com tecnologias modernas — do handoff de design ao lançamento em produção.",
+        "items": [
+          "Frontend React / Next.js",
+          "API Node.js / Java / Python",
+          "Design e migrações de banco de dados",
+          "Pipeline CI/CD incluído"
+        ],
+        "popular": true
+      },
+      {
+        "icon": "📱",
+        "title": "App Móvel (iOS & Android)",
+        "price": "a partir de $8,500",
+        "description": "App móvel multiplataforma publicado na App Store e no Google Play.",
+        "items": [
+          "React Native ou Flutter",
+          "iOS + Android de uma base de código",
+          "Integração com API backend",
+          "Envio para App Store & Play Store"
+        ]
+      }
+    ],
+    "retainer_items": [
+      {
+        "icon": "⏱",
+        "title": "Taxa por hora",
+        "price": "$150–$200",
+        "price_suffix": "/ hora",
+        "description": "Ideal para projetos de curto prazo, auditorias ou contratos por tempo e materiais.",
+        "items": [
+          "Sem compromisso de longo prazo",
+          "Relatórios de tempo semanais",
+          "Disponível nos fusos horários dos EUA",
+          "Mínimo 5 horas / contrato"
+        ]
+      },
+      {
+        "icon": "📅",
+        "title": "Retainer mensal",
+        "price": "a partir de $4,500",
+        "price_suffix": "/ mês",
+        "description": "Capacidade de engenharia dedicada e contínua — código, arquitetura, mentoria e entrega.",
+        "items": [
+          "20–40 h/mês garantidas",
+          "Tempo de resposta prioritário",
+          "Revisões de arquitetura incluídas",
+          "Cancelamento a qualquer momento com 30 dias de aviso"
+        ],
+        "popular": true
+      }
+    ]
+  },
+  "contact": {
+    "label": "Contato",
+    "headline": "Vamos conversar",
+    "subheading": "Conte-me sobre seu projeto. Geralmente respondo em um dia útil.",
+    "name_label": "Nome completo",
+    "name_placeholder": "João Silva",
+    "email_label": "Endereço de e-mail",
+    "email_placeholder": "joao@suaempresa.com.br",
+    "service_label": "Serviço de interesse",
+    "service_placeholder": "Selecionar um serviço…",
+    "message_label": "Detalhes do projeto",
+    "message_placeholder": "Descreva seu projeto, cronograma e objetivos…",
+    "submit": "Enviar mensagem",
+    "clear": "Limpar",
+    "sending": "Enviando…",
+    "success_title": "Mensagem recebida!",
+    "success_body": "Obrigado por entrar em contato. Responderei em até um dia útil.",
+    "error_generic": "Algo deu errado. Tente novamente ou me escreva diretamente.",
+    "linkedin_label": "LinkedIn",
+    "availability_label": "Disponibilidade",
+    "availability_value": "Remoto — fusos horários EUA & Europa",
+    "services": [
+      "Aplicação Web Full-Stack",
+      "App Mobile (iOS & Android)",
+      "Automação CI/CD",
+      "Arquitetura Cloud (AWS / GCP / Azure)",
+      "Kubernetes & Contêineres",
+      "API & Microsserviços",
+      "Infraestrutura como Código",
+      "Observabilidade & Monitoramento",
+      "Engenharia de performance",
+      "Liderança técnica & Mentoria",
+      "Correção rápida / Depuração",
+      "Outro"
+    ]
+  },
+  "footer": {
+    "tagline": "Construindo software escalável que funciona.",
+    "rights": "Todos os direitos reservados.",
+    "links": {
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  }
+}

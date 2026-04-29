@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "skills": "Skills",
+    "projects": "Projects",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "hire": "Hire Me"
+  },
+
+  "hero": {
+    "badge": "Available for new engagements",
+    "headline1": "Build, Scale, Grow.",
+    "headline2": "Ship Software That Lasts.",
+    "title": "Principal Software Engineer",
+    "sub": "I design and deliver <strong>production-grade full-stack systems</strong> — REST backends, cloud-native architectures on <strong>AWS</strong> & <strong>Azure</strong>, React & mobile frontends, and the DevOps pipelines that ship them reliably.",
+    "cta_primary": "See My Work",
+    "cta_secondary": "Get in Touch",
+    "scroll": "Scroll down",
+    "stat_years": "Years Experience",
+    "stat_projects": "Projects Delivered",
+    "stat_uptime": "Uptime SLA",
+    "stat_clients": "Happy Clients"
+  },
+
+  "about": {
+    "label": "About Me",
+    "headline": "Principal Software Engineer",
+    "p1": "I'm a Principal Software Engineer with 10+ years building production systems across the full stack. I design and ship REST APIs, microservices, and event-driven backends — alongside cloud-native infrastructure, DevOps automation, and high-quality web and mobile frontends that scale.",
+    "p2": "From greenfield SaaS platforms to enterprise backend modernisation — I bring senior-level ownership, clean architecture, and end-to-end delivery. I partner with startups and scale-ups across North America and Europe to take products from idea to production.",
+    "cta": "Let's Collaborate",
+    "fact_location": "Remote — US & EU time zones",
+    "fact_turnaround": "Fast turnaround",
+    "fact_partnership": "Long-term partnerships",
+    "tags": ["Full-Stack Development", "REST APIs", "Microservices", "Cloud Architecture", "Mobile Apps", "DevOps & CI/CD", "Backend Systems", "Team Leadership"]
+  },
+
+  "services": {
+    "label": "What I Do",
+    "headline": "End-to-End Engineering Services",
+    "subheading": "From frontend to cloud infrastructure — I cover the full delivery lifecycle.",
+    "items": [
+      {
+        "title": "CI/CD Pipeline Automation",
+        "description": "Design and implement fully automated pipelines with GitHub Actions, Jenkins, or GitLab CI. Reduce release cycles from days to minutes."
+      },
+      {
+        "title": "Cloud Architecture (AWS / GCP / Azure)",
+        "description": "Architect and migrate workloads to the cloud using managed services, VPCs, IAM, and infrastructure-as-code with Terraform or Pulumi."
+      },
+      {
+        "title": "Kubernetes & Container Orchestration",
+        "description": "Production-grade Kubernetes clusters with Helm, autoscaling, service meshes, and zero-downtime deployments."
+      },
+      {
+        "title": "Full-Stack Web Applications",
+        "description": "Build performant, accessible web apps with React, Next.js, Vue, or Angular on the frontend and Node.js, Java, or Python on the backend."
+      },
+      {
+        "title": "Mobile Apps (iOS & Android)",
+        "description": "Cross-platform mobile applications using React Native or Flutter — deployed to both the App Store and Google Play from a single codebase."
+      },
+      {
+        "title": "Backend API & Microservices",
+        "description": "Design and build RESTful and GraphQL APIs, event-driven microservices, and distributed systems with Java Spring Boot, Node.js, or Go."
+      },
+      {
+        "title": "Infrastructure as Code (IaC)",
+        "description": "Automate your entire infrastructure with Terraform, Pulumi, or AWS CDK. Reproducible, version-controlled environments across all stages."
+      },
+      {
+        "title": "Observability & Monitoring",
+        "description": "Implement end-to-end observability with Prometheus, Grafana, Datadog, or the ELK stack — covering metrics, logs, traces, and alerting."
+      },
+      {
+        "title": "Security & Compliance",
+        "description": "Integrate security scanning, secrets management, RBAC, and compliance checks (SOC 2, HIPAA) into your development and release workflow."
+      },
+      {
+        "title": "Database Design & Optimization",
+        "description": "Design scalable relational and NoSQL schemas, optimize slow queries, set up replication, and migrate data safely with zero downtime."
+      },
+      {
+        "title": "Performance Engineering",
+        "description": "Profile and optimize frontend load times, API throughput, and infrastructure costs. Achieve sub-200 ms response times at scale."
+      },
+      {
+        "title": "Technical Leadership & Mentorship",
+        "description": "Embedded staff-level engineering support — code reviews, architecture decisions, team processes, and developer mentorship for your team."
+      }
+    ]
+  },
+
+  "skills": {
+    "label": "Tech Stack",
+    "headline": "Tools & Technologies",
+    "tier1": "Expert",
+    "tier2": "Proficient",
+    "tier3": "Familiar"
+  },
+
+  "projects": {
+    "label": "Featured Work",
+    "headline": "Selected Projects",
+    "subheading": "A sample of recent engagements.",
+    "items": [
+      {
+        "title": "Enterprise CI/CD Platform",
+        "description": "Designed a multi-environment GitOps pipeline handling 200+ daily deployments across 15 microservices with zero-downtime rollouts.",
+        "tech": ["GitHub Actions", "ArgoCD", "Kubernetes", "Terraform"]
+      },
+      {
+        "title": "Cloud-Native SaaS Platform",
+        "description": "Architected and built a full-stack SaaS product on AWS — React frontend, Node.js API, PostgreSQL, deployed on EKS with auto-scaling.",
+        "tech": ["React", "Node.js", "AWS EKS", "PostgreSQL"]
+      },
+      {
+        "title": "Multi-Tenant SaaS Backend",
+        "description": "Designed and shipped a multi-tenant REST API platform on AWS ECS — schema-per-tenant PostgreSQL isolation, Redis caching, RBAC, and Terraform IaC.",
+        "tech": ["NestJS", "PostgreSQL", "Redis", "AWS ECS", "Terraform"]
+      }
+    ],
+    "view_code": "View Code",
+    "live_demo": "Live Demo",
+    "view_case_study": "View case study",
+    "modal_challenge": "The Challenge",
+    "modal_solution": "The Solution",
+    "modal_outcomes": "Key Outcomes",
+    "modal_cta": "Start a Similar Project",
+    "case_studies": [
+      {
+        "challenge": "A growing engineering org with 15 microservices was releasing manually — deployments took 3+ hours, rollbacks were risky, and staging drift caused repeated production incidents.",
+        "solution": "Designed a fully automated GitOps pipeline using GitHub Actions for CI and ArgoCD for continuous delivery on Kubernetes. Terraform managed all infrastructure across dev, staging, and prod environments. Each service got isolated pipelines with automated testing gates, security scanning, and zero-downtime blue/green rollouts.",
+        "outcome": [
+          "200+ daily deployments handled automatically",
+          "Release cycle reduced from 3 hours to under 8 minutes",
+          "Zero unplanned downtime across 6 months post-launch",
+          "Infrastructure drift eliminated via Terraform state enforcement",
+          "Team of 12 engineers onboarded within 1 week"
+        ]
+      },
+      {
+        "challenge": "A B2B SaaS startup needed to go from zero to a production-ready platform in under 4 months — with multi-tenancy, real-time features, and the ability to scale to thousands of users from day one.",
+        "solution": "Architected and built the full stack: a Next.js + React frontend, a Node.js REST API with JWT auth and role-based access control, a PostgreSQL database with row-level security for multi-tenancy, and a WebSocket layer for real-time updates. Deployed on AWS EKS with Helm, horizontal pod autoscaling, and a CloudFront CDN layer.",
+        "outcome": [
+          "Launched to production in 14 weeks end-to-end",
+          "Scaled to 5,000 concurrent users on launch day with no incidents",
+          "API p99 latency under 120 ms across all endpoints",
+          "Auto-scaling handled 10× traffic spike during a product launch event",
+          "SOC 2 Type I audit passed within 3 months of go-live"
+        ]
+      },
+      {
+        "challenge": "A B2B SaaS startup needed a multi-tenant REST backend capable of isolating data per client, enforcing role-based access control, and scaling horizontally — with a hard 3-month launch deadline.",
+        "solution": "Designed a schema-per-tenant architecture in PostgreSQL for strict data isolation. Built a NestJS REST API with JWT + RBAC, a Redis caching layer for high-frequency reads, and deployed the full stack on AWS ECS Fargate using Terraform IaC. GitHub Actions CI/CD pipeline automated testing, linting, and blue/green deployments on every merge.",
+        "outcome": [
+          "Onboarded 30+ enterprise tenants with zero data-leakage incidents",
+          "API P95 latency under 80ms at 500 concurrent users",
+          "99.9% uptime over the first 12 months post-launch",
+          "Infrastructure provisioning reduced from days to 12 minutes via Terraform",
+          "Blue/green deployments with zero downtime on every release"
+        ]
+      }
+    ]
+  },
+
+  "pricing": {
+    "label": "Pricing",
+    "headline": "Transparent, Value-Based Pricing",
+    "subheading": "US market rates for Principal-level engineering. All prices in USD.",
+    "tab_quick": "Quick Fixes",
+    "tab_packages": "Project Packages",
+    "tab_retainer": "Hourly & Retainer",
+    "popular": "Most Popular",
+    "note_estimate": "Final price depends on scope. Free scoping call included.",
+    "cta_start": "Get Started",
+    "cta_quote": "Request a Quote",
+    "cta_book": "Book a Call",
+
+    "quick_items": [
+      {
+        "icon": "⚡",
+        "title": "Fix CI/CD Pipeline",
+        "price": "$999",
+        "description": "Debug and repair a broken CI/CD pipeline. Includes root-cause analysis and documentation.",
+        "items": ["GitHub Actions / Jenkins / GitLab CI", "Pipeline audit & diagnosis", "Fix + verification", "Delivery in 2–3 business days"]
+      },
+      {
+        "icon": "🐳",
+        "title": "Dockerize Your App",
+        "price": "$699",
+        "description": "Containerize your existing application with multi-stage Dockerfiles and a docker-compose setup.",
+        "items": ["Multi-stage Dockerfile", "docker-compose for local dev", "Image size optimization", "Push to registry (Docker Hub / ECR)"]
+      },
+      {
+        "icon": "☁️",
+        "title": "AWS / GCP Setup",
+        "price": "$899",
+        "description": "Provision and configure a production-ready cloud environment with VPC, IAM, and basic networking.",
+        "items": ["VPC + subnets + security groups", "IAM roles & least-privilege policy", "EC2 / Cloud Run instance setup", "Basic monitoring & alerts"]
+      },
+      {
+        "icon": "🐛",
+        "title": "Fix Frontend Bug",
+        "price": "$599",
+        "description": "Diagnose and fix a critical bug or performance issue in your React, Vue, or Next.js app.",
+        "items": ["Root cause analysis", "React / Vue / Next.js / Angular", "Fix + regression test", "Delivery in 1–2 business days"]
+      }
+    ],
+
+    "package_items": [
+      {
+        "icon": "🔄",
+        "title": "CI/CD Automation",
+        "price": "$3,500–$8,000",
+        "description": "End-to-end pipeline automation from code commit to production deployment.",
+        "items": ["Multi-stage pipeline design", "Test, build, deploy automation", "Secrets management", "Rollback & alerting"]
+      },
+      {
+        "icon": "☁️",
+        "title": "Cloud Migration",
+        "price": "$6,000–$15,000",
+        "description": "Lift-and-shift or re-architect your workloads to AWS, GCP, or Azure.",
+        "items": ["Architecture design & planning", "IaC with Terraform", "Zero-downtime cutover", "Cost optimization review"]
+      },
+      {
+        "icon": "☸️",
+        "title": "Kubernetes Platform",
+        "price": "$4,000–$9,000",
+        "description": "Production-grade Kubernetes cluster with everything you need to operate confidently.",
+        "items": ["Cluster setup (EKS / GKE / AKS)", "Helm charts & GitOps", "Autoscaling & resource limits", "Observability stack"]
+      },
+      {
+        "icon": "🌐",
+        "title": "Full-Stack Web App",
+        "price": "from $5,000",
+        "description": "Custom web application built with modern technologies — from design handoff to production launch.",
+        "items": ["React / Next.js frontend", "Node.js / Java / Python API", "Database design & migrations", "CI/CD pipeline included"],
+        "popular": true
+      },
+      {
+        "icon": "📱",
+        "title": "Mobile App (iOS & Android)",
+        "price": "from $8,500",
+        "description": "Cross-platform mobile app shipped to both the App Store and Google Play.",
+        "items": ["React Native or Flutter", "iOS + Android from one codebase", "Backend API integration", "App Store & Play Store submission"]
+      }
+    ],
+
+    "retainer_items": [
+      {
+        "icon": "⏱",
+        "title": "Hourly Rate",
+        "price": "$150–$200",
+        "price_suffix": "/ hour",
+        "description": "Ideal for short-term projects, audits, or time-and-materials engagements.",
+        "items": ["No long-term commitment", "Weekly time reports", "Available across US time zones", "Minimum 5 hours / engagement"]
+      },
+      {
+        "icon": "📅",
+        "title": "Monthly Retainer",
+        "price": "from $4,500",
+        "price_suffix": "/ month",
+        "description": "Dedicated ongoing engineering bandwidth — code, architecture, mentorship, and delivery.",
+        "items": ["20–40 hrs / month guaranteed", "Priority response time", "Architecture reviews included", "Cancel anytime with 30-day notice"],
+        "popular": true
+      }
+    ]
+  },
+
+  "contact": {
+    "label": "Get In Touch",
+    "headline": "Start a Conversation",
+    "subheading": "Tell me about your project. I typically respond within one business day.",
+    "name_label": "Full Name",
+    "name_placeholder": "Jane Smith",
+    "email_label": "Email Address",
+    "email_placeholder": "jane@yourcompany.com",
+    "service_label": "Service of Interest",
+    "service_placeholder": "Select a service…",
+    "message_label": "Project Details",
+    "message_placeholder": "Describe your project, timeline, and goals…",
+    "submit": "Send Message",
+    "clear": "Clear",
+    "sending": "Sending…",
+    "success_title": "Message received!",
+    "success_body": "Thanks for reaching out. I'll get back to you within one business day.",
+    "error_generic": "Something went wrong. Please try again or email me directly.",
+    "linkedin_label": "LinkedIn",
+    "availability_label": "Availability",
+    "availability_value": "Remote — US & European time zones",
+    "services": [
+      "Full-Stack Web Application",
+      "Mobile App (iOS & Android)",
+      "CI/CD Pipeline Automation",
+      "Cloud Architecture (AWS / GCP / Azure)",
+      "Kubernetes & Container Orchestration",
+      "Backend API & Microservices",
+      "Infrastructure as Code",
+      "Observability & Monitoring",
+      "Performance Engineering",
+      "Technical Leadership & Mentorship",
+      "Quick Fix / Debugging",
+      "Other"
+    ]
+  },
+
+  "footer": {
+    "tagline": "Building scalable software that ships.",
+    "rights": "All rights reserved.",
+    "links": {
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  }
+}
