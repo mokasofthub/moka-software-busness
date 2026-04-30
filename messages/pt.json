@@ -4,7 +4,8 @@
     "services": "Serviços",
     "skills": "Habilidades",
     "projects": "Projetos",
-    "pricing": "Preços",
+    "monitoring": "Monitoramento",
+    "pricing": "Trabalhe Comigo",
     "contact": "Contato",
     "hire": "Me contratar"
   },
@@ -343,6 +344,15 @@
     "links": {
       "privacy": "Privacy",
       "terms": "Terms"
-    }
+    }  },
+  "monitoring": {
+    "title": "Infraestrutura & Monitoramento",
+    "subtitle": "Stack AWS em produção com implantações ECS Fargate, um pipeline CI/CD Jenkins e observabilidade em tempo real via CloudWatch e Grafana — com verificações sintéticas de disponibilidade de 4 locais globais.",
+    "badge": "Infraestrutura ao Vivo",
+    "highlight_1": "Implantações sem tempo de inatividade via ECS Fargate + atualizações progressivas",
+    "highlight_2": "Pipeline CI/CD automatizado com Jenkins no EC2",
+    "highlight_3": "Métricas em tempo real: CloudFront, CPU/Memória ECS, rede EC2",
+    "highlight_4": "Verificações sintéticas de 4 locais globais",
+    "cta": "Ver Dashboard ao Vivo"
   }
 }

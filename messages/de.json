@@ -4,7 +4,8 @@
     "services": "Leistungen",
     "skills": "Kenntnisse",
     "projects": "Projekte",
-    "pricing": "Preise",
+    "monitoring": "Monitoring",
+    "pricing": "Zusammenarbeit",
     "contact": "Kontakt",
     "hire": "Engagieren"
   },
@@ -343,6 +344,15 @@
     "links": {
       "privacy": "Privacy",
       "terms": "Terms"
-    }
+    }  },
+  "monitoring": {
+    "title": "Infrastruktur & Monitoring",
+    "subtitle": "AWS-Produktionsstack mit ECS Fargate-Deployments, einer Jenkins CI/CD-Pipeline und Echtzeit-Observability via CloudWatch und Grafana — inklusive synthetischer Uptime-Checks von 4 globalen Standorten.",
+    "badge": "Live-Infrastruktur",
+    "highlight_1": "Zero-Downtime-Deployments via ECS Fargate + Rolling Updates",
+    "highlight_2": "Automatisierte CI/CD-Pipeline mit Jenkins auf EC2",
+    "highlight_3": "Echtzeit-Metriken: CloudFront, ECS CPU/Speicher, EC2-Netzwerk",
+    "highlight_4": "Synthetische Uptime-Checks von 4 globalen Standorten",
+    "cta": "Live-Dashboard anzeigen"
   }
 }
