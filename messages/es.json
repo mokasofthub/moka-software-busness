@@ -46,6 +46,8 @@
     "label": "Qué hago",
     "headline": "Servicios de ingeniería de extremo a extremo",
     "subheading": "Desde el frontend hasta la infraestructura cloud — cubro todo el ciclo de entrega.",
+    "show_more": "Ver {count} servicios más",
+    "show_less": "Ver menos",
     "items": [
       {
         "title": "Automatización de Pipelines CI/CD",
@@ -185,157 +187,117 @@
     ]
   },
   "pricing": {
-    "label": "Precios",
-    "headline": "Precios transparentes orientados al valor",
-    "subheading": "Tarifas del mercado de EE.UU. para ingeniería nivel Principal. Precios en USD.",
-    "tab_quick": "Correcciones rápidas",
-    "tab_packages": "Paquetes de proyecto",
-    "tab_retainer": "Por hora & Mensual",
-    "popular": "Más popular",
-    "note_estimate": "El precio final depende del alcance. Llamada de definición gratuita incluida.",
+    "label": "Lo Que Construimos",
+    "headline": "Un Servicio para Cada Proyecto",
+    "subheading": "El alcance define el precio. Todo empieza con una conversación — sin sorpresas, sin costos ocultos.",
+    "tab_web": "Web & Apps",
+    "tab_engineering": "Ingeniería",
+    "tab_support": "Soporte & Mentoría",
+    "popular": "Más Solicitado",
+    "note_estimate": "Todo se basa en el alcance. Reserva una llamada de descubrimiento gratuita para obtener un presupuesto personalizado.",
     "cta_start": "Empezar",
     "cta_quote": "Solicitar presupuesto",
-    "cta_book": "Reservar llamada",
-    "quick_items": [
+    "cta_book": "Hacer una solicitud",
+
+    "web_items": [
       {
-        "icon": "⚡",
-        "title": "Reparar Pipeline CI/CD",
-        "price": "$999",
-        "description": "Depura y repara un pipeline CI/CD roto. Incluye análisis de causa raíz y documentación.",
-        "items": [
-          "GitHub Actions / Jenkins / GitLab CI",
-          "Auditoría y diagnóstico del pipeline",
-          "Corrección + verificación",
-          "Entrega en 2–3 días hábiles"
-        ]
-      },
-      {
-        "icon": "🐳",
-        "title": "Dockerizar tu aplicación",
-        "price": "$699",
-        "description": "Conteneriza tu aplicación existente con Dockerfiles multi-etapa y configuración docker-compose.",
-        "items": [
-          "Dockerfile multi-etapa",
-          "docker-compose para dev local",
-          "Optimización del tamaño de imagen",
-          "Push al registry (Docker Hub / ECR)"
-        ]
-      },
-      {
-        "icon": "☁️",
-        "title": "Configuración AWS / GCP",
-        "price": "$899",
-        "description": "Aprovisiona y configura un entorno cloud listo para producción con VPC, IAM y redes básicas.",
-        "items": [
-          "VPC + subredes + grupos de seguridad",
-          "Roles IAM & política de mínimo privilegio",
-          "Configuración EC2 / Cloud Run",
-          "Monitoreo y alertas básicos"
-        ]
-      },
-      {
-        "icon": "🐛",
-        "title": "Corregir Bug Frontend",
-        "price": "$599",
-        "description": "Diagnostica y corrige un bug crítico o problema de rendimiento en tu app React, Vue o Next.js.",
-        "items": [
-          "Análisis de causa raíz",
-          "React / Vue / Next.js / Angular",
-          "Corrección + prueba de regresión",
-          "Entrega en 1–2 días hábiles"
-        ]
-      }
-    ],
-    "package_items": [
-      {
-        "icon": "🔄",
-        "title": "Automatización CI/CD",
-        "price": "$3,500–$8,000",
-        "description": "Automatización completa del pipeline desde el commit hasta el despliegue en producción.",
-        "items": [
-          "Diseño de pipeline multi-etapa",
-          "Automatización de test, build y deploy",
-          "Gestión de secretos",
-          "Rollback y alertas"
-        ]
-      },
-      {
-        "icon": "☁️",
-        "title": "Migración Cloud",
-        "price": "$6,000–$15,000",
-        "description": "Lift-and-shift o re-arquitectura de tus cargas de trabajo a AWS, GCP o Azure.",
-        "items": [
-          "Diseño y planificación de arquitectura",
-          "IaC con Terraform",
-          "Migración sin tiempo de inactividad",
-          "Revisión de optimización de costos"
-        ]
-      },
-      {
-        "icon": "☸️",
-        "title": "Plataforma Kubernetes",
-        "price": "$4,000–$9,000",
-        "description": "Clúster Kubernetes de nivel producción con todo lo que necesitas para operar con confianza.",
-        "items": [
-          "Configuración de clúster (EKS / GKE / AKS)",
-          "Charts Helm & GitOps",
-          "Autoescalado & límites de recursos",
-          "Stack de observabilidad"
-        ]
+        "icon": "🎓",
+        "title": "Sitios de Colegios y Universidades",
+        "description": "Sitios institucionales modernos para colegios, facultades o asociaciones estudiantiles — accesibles y fáciles de mantener.",
+        "items": ["Catálogo de programas y cursos", "Noticias, eventos y anuncios", "Directorio de personal y panel admin", "Diseño responsive y accesible"]
       },
       {
         "icon": "🌐",
-        "title": "App Web Full-Stack",
-        "price": "desde $5,000",
-        "description": "Aplicación web personalizada con tecnologías modernas — desde el diseño hasta el lanzamiento en producción.",
-        "items": [
-          "Frontend React / Next.js",
-          "API Node.js / Java / Python",
-          "Diseño y migraciones de base de datos",
-          "Pipeline CI/CD incluido"
-        ],
-        "popular": true
+        "title": "Sitios Corporativos & Portfolio",
+        "description": "Desde landing pages hasta sitios corporativos completos. Rápido, optimizado para SEO y diseñado para convertir.",
+        "items": ["Next.js o sitio estático", "Integración CMS (Sanity, Strapi…)", "SEO y rendimiento optimizados", "Soporte multilingüe"]
       },
       {
         "icon": "📱",
-        "title": "App Móvil (iOS & Android)",
-        "price": "desde $8,500",
-        "description": "App móvil multiplataforma publicada en App Store y Google Play.",
-        "items": [
-          "React Native o Flutter",
-          "iOS + Android desde una base de código",
-          "Integración con API backend",
-          "Envío a App Store & Play Store"
-        ]
+        "title": "Aplicaciones Móviles",
+        "description": "Apps móviles multiplataforma para iOS y Android — desde el MVP hasta un lanzamiento en producción pulido.",
+        "items": ["React Native o Flutter", "iOS + Android desde una sola base de código", "Integración con API backend", "Envío a App Store & Play Store"]
+      },
+      {
+        "icon": "🏋️",
+        "title": "App Web para Complejos Deportivos",
+        "description": "Plataformas a medida para gimnasios, clubes y complejos deportivos — reservas, membresías, horarios y portales de entrenadores.",
+        "items": ["Sistema de reservas y horarios", "Gestión de membresías y facturación", "Panel de entrenador", "Diseño mobile-first"],
+        "popular": true
+      },
+      {
+        "icon": "🔌",
+        "title": "APIs REST y GraphQL",
+        "description": "APIs bien diseñadas para dominios complejos — complejos deportivos, plataformas SaaS o cualquier lógica de negocio personalizada.",
+        "items": ["Diseño RESTful o GraphQL", "Auth (JWT, OAuth2)", "Rate limiting y documentación", "Spec OpenAPI / Swagger"]
+      },
+      {
+        "icon": "🛒",
+        "title": "E-Commerce & Marketplaces",
+        "description": "Tiendas online y plataformas marketplace, desde catálogos simples hasta configuraciones multi-vendedor complejas.",
+        "items": ["Catálogo y carrito", "Pasarela de pago (Stripe, PayPal)", "Gestión de pedidos", "Panel de administración"]
       }
     ],
-    "retainer_items": [
+
+    "engineering_items": [
       {
-        "icon": "⏱",
-        "title": "Tarifa por hora",
-        "price": "$150–$200",
-        "price_suffix": "/ hora",
-        "description": "Ideal para proyectos a corto plazo, auditorías o compromisos por tiempo y materiales.",
-        "items": [
-          "Sin compromiso a largo plazo",
-          "Informes de tiempo semanales",
-          "Disponible en zonas horarias de EE.UU.",
-          "Mínimo 5 horas / compromiso"
-        ]
+        "icon": "🔄",
+        "title": "Automatización CI/CD",
+        "description": "Pipeline completo del commit al despliegue en producción — pruebas automatizadas, builds, despliegues y rollbacks.",
+        "items": ["GitHub Actions / Jenkins / GitLab CI", "Diseño de pipeline multi-etapa", "Gestión de secretos", "Rollback y alertas"]
+      },
+      {
+        "icon": "☁️",
+        "title": "Arquitectura Cloud",
+        "description": "Entornos cloud listos para producción en AWS, GCP o Azure — diseñados para fiabilidad y eficiencia de costes.",
+        "items": ["VPC, IAM, configuración de red", "IaC con Terraform", "Despliegue sin tiempo de inactividad", "Revisión de optimización de costos"]
+      },
+      {
+        "icon": "☸️",
+        "title": "Kubernetes & Contenedores",
+        "description": "Contenedorización y configuración de clusters Kubernetes para cargas de trabajo escalables y observables.",
+        "items": ["Dockerfiles multi-etapa", "Cluster EKS / GKE / AKS", "Charts Helm & GitOps", "Autoescalado y observabilidad"]
+      },
+      {
+        "icon": "🏗️",
+        "title": "Arquitectura Full-Stack",
+        "description": "Del monolito a los microservicios — diseño y construcción de sistemas backend escalables que crecen con tu producto.",
+        "items": ["Diseño de sistemas & ADRs", "Node.js / Java / Python / Go", "Diseño y migraciones de BDD", "Colas de mensajes y patrones async"],
+        "popular": true
+      },
+      {
+        "icon": "📐",
+        "title": "Auditoría de Arquitectura Técnica",
+        "description": "Auditoría de tu sistema existente y hoja de ruta clara para mejorar escalabilidad, seguridad y mantenibilidad.",
+        "items": ["Auditoría de código e infraestructura", "Identificación de cuellos de botella y riesgos", "Recomendaciones escritas", "Sesión de preguntas de seguimiento"]
+      }
+    ],
+
+    "support_items": [
+      {
+        "icon": "🎒",
+        "title": "Apoyo a Proyectos Estudiantiles",
+        "description": "Ayuda a estudiantes para dar vida a sus proyectos académicos — cualquier lenguaje, cualquier stack. De la idea a la demo funcional.",
+        "items": ["Cualquier lenguaje de programación", "Proyecto web, móvil o backend", "Sesiones de desarrollo guiadas", "Revisión y correcciones de código"],
+        "popular": true
+      },
+      {
+        "icon": "🔍",
+        "title": "Revisión de Código & Refactoring",
+        "description": "Análisis profundo de tu base de código con retroalimentación sobre arquitectura, seguridad y buenas prácticas.",
+        "items": ["Revisión de seguridad y bugs", "Análisis de rendimiento", "Hoja de ruta de refactoring", "Informe escrito detallado"]
+      },
+      {
+        "icon": "🐛",
+        "title": "Depuración & Corrección de Bugs",
+        "description": "¿Atascado en un bug difícil? Diagnóstico y corrección rápidos para problemas de frontend, backend o infraestructura.",
+        "items": ["Análisis de causa raíz", "React / Vue / Next.js / Node", "Problemas cloud y DevOps", "Corrección + prueba de regresión"]
       },
       {
         "icon": "📅",
-        "title": "Retainer mensual",
-        "price": "desde $4,500",
-        "price_suffix": "/ mes",
-        "description": "Capacidad de ingeniería dedicada y continua — código, arquitectura, mentoría y entrega.",
-        "items": [
-          "20–40 h/mes garantizadas",
-          "Tiempo de respuesta prioritario",
-          "Revisiones de arquitectura incluidas",
-          "Cancelación en cualquier momento con 30 días de aviso"
-        ],
-        "popular": true
+        "title": "Retainer Mensual",
+        "description": "Capacidad de ingeniería dedicada cada mes — código, arquitectura, mentoría y entrega.",
+        "items": ["Horas flexibles por mes", "Tiempo de respuesta prioritario", "Revisiones de arquitectura incluidas", "Cancelación en cualquier momento"]
       }
     ]
   },

@@ -99,7 +99,14 @@
   /* 3D card base */
   .card-3d {
     will-change: transform;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease;
+  }
+
+  .card-3d:hover {
+    box-shadow: var(--card-shadow-hover);
   }
 
   .card-3d-glare {
@@ -227,4 +234,87 @@ select {
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50%       { background-position: 100% 50%; }
+}
+
+/* ─── Marquee (infinite scroll) ─── */
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 30s linear infinite;
+}
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite;
+}
+.marquee-track:hover .animate-marquee-left,
+.marquee-track:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* ─── Scroll-reveal stagger for card grids ─── */
+.card-enter {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-enter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card-enter-d1 { transition-delay: 0.08s; }
+.card-enter-d2 { transition-delay: 0.16s; }
+
+/* ─── Pricing tab content entrance ─── */
+@keyframes tab-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.tab-enter {
+  animation: tab-enter 0.35s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* ─── Mobile carousel card entrance ─── */
+@keyframes card-slide-in {
+  from { transform: translateX(20px) scale(0.97); }
+  to   { transform: translateX(0) scale(1); }
+}
+.carousel-card {
+  /* opacity always 1 — animation only moves, never hides */
+  animation: card-slide-in 0.45s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.carousel-card:nth-child(1)  { animation-delay: 0.00s; }
+.carousel-card:nth-child(2)  { animation-delay: 0.05s; }
+.carousel-card:nth-child(3)  { animation-delay: 0.10s; }
+.carousel-card:nth-child(4)  { animation-delay: 0.15s; }
+.carousel-card:nth-child(5)  { animation-delay: 0.20s; }
+.carousel-card:nth-child(6)  { animation-delay: 0.25s; }
+
+/* ─── Carousel card shimmer on hover/active ─── */
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(220%) skewX(-12deg); }
+}
+.carousel-card-inner {
+  position: relative;
+  overflow: hidden;
+}
+.carousel-card-inner::after {
+  content: '';
+  position: absolute;
+  inset-y: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  transform: translateX(-100%) skewX(-12deg);
+  pointer-events: none;
+}
+.carousel-card-inner:active::after {
+  animation: shimmer-sweep 0.5s ease-out forwards;
 }
