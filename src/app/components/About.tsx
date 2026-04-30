@@ -1,23 +1,29 @@
 'use client';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import Card3D from './Card3D';
 
 export default function About() {
   const t = useTranslations('about');
   const tags = t.raw('tags') as string[];
 
   return (
-    <section id="about" className="py-24 bg-[var(--bg-section)]">
+    <section id="about" className="py-24 bg-white dark:bg-[var(--bg-section)]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 items-center">
 
           {/* Visual */}
           <div className="flex flex-col items-center gap-6">
             {/* Avatar with animated glow ring */}
-            <div className="relative">
-              <div
-                className="w-44 h-44 rounded-full gradient-bg flex items-center justify-center font-heading font-bold text-4xl text-white avatar-glow"
-              >
-                BM
+            <div className="relative group/avatar">
+              <div className="w-44 h-44 rounded-full overflow-hidden avatar-glow border-2 border-cyan-400/40 relative group-hover/avatar:scale-[1.03] transition-transform duration-500">
+                <Image
+                  src="/images/profile.png"
+                  alt="Bernard D. Mokalo"
+                  fill
+                  className="object-cover object-center"
+                  priority
+                />
               </div>
               {/* Floating "Available" badge */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-[var(--bg-card)] border border-[var(--border-color)] rounded-full px-3 py-1 text-xs font-semibold text-emerald-400 shadow-lg flex items-center gap-1.5">
@@ -61,13 +67,13 @@ export default function About() {
                 { icon: '🕐', text: t('fact_turnaround') },
                 { icon: '🤝', text: t('fact_partnership') },
               ].map(({ icon, text }) => (
-                <span
+                <Card3D
                   key={text}
-                  className="flex items-center gap-2 text-sm text-[var(--text-muted)] bg-[var(--bg-card)] border border-[var(--border-color)] px-4 py-2 rounded-full"
+                  className="flex items-center gap-2.5 text-sm text-[var(--text-muted)] bg-[var(--bg-card)] border border-[var(--border-color)] px-4 py-2.5 rounded-xl hover:border-indigo-400/40 hover:text-[var(--text-secondary)] transition-colors cursor-default"
                 >
-                  <span>{icon}</span>
-                  {text}
-                </span>
+                  <span className="text-base shrink-0">{icon}</span>
+                  <span>{text}</span>
+                </Card3D>
               ))}
             </div>
 

@@ -108,7 +108,7 @@ describe('Navbar', () => {
     render(<Navbar />);
     await user.click(screen.getByRole('button', { name: 'Switch language' }));
     // All locale buttons should now be visible
-    expect(screen.getByRole('button', { name: /🇫🇷/ })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /🇪🇸/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /FR/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /ES/i })).toBeInTheDocument();
   });
 });

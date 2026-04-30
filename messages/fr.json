@@ -46,6 +46,8 @@
     "label": "Ce que je fais",
     "headline": "Services d'ingénierie bout en bout",
     "subheading": "Du frontend à l'infrastructure cloud — je couvre l'ensemble du cycle de livraison.",
+    "show_more": "Voir {count} autres services",
+    "show_less": "Réduire",
     "items": [
       {
         "title": "Automatisation de pipelines CI/CD",
@@ -185,157 +187,117 @@
     ]
   },
   "pricing": {
-    "label": "Tarifs",
-    "headline": "Tarification transparente, orientée valeur",
-    "subheading": "Tarifs du marché américain pour l'ingénierie au niveau Principal. Prix en USD.",
-    "tab_quick": "Corrections rapides",
-    "tab_packages": "Forfaits projet",
-    "tab_retainer": "Horaire & Forfait mensuel",
-    "popular": "Le plus populaire",
-    "note_estimate": "Le prix final dépend de la portée. Appel de cadrage gratuit inclus.",
+    "label": "Ce Qu'on Construit",
+    "headline": "Un Service pour Chaque Projet",
+    "subheading": "Le périmètre définit le prix. Chaque mission commence par une conversation — sans surprise, sans frais cachés.",
+    "tab_web": "Web & Apps",
+    "tab_engineering": "Ingénierie",
+    "tab_support": "Support & Mentorat",
+    "popular": "Le Plus Demandé",
+    "note_estimate": "Tout est basé sur le scope. Réservez un appel de découverte gratuit pour un devis personnalisé.",
     "cta_start": "Démarrer",
     "cta_quote": "Demander un devis",
-    "cta_book": "Réserver un appel",
-    "quick_items": [
+    "cta_book": "Faire une demande",
+
+    "web_items": [
       {
-        "icon": "⚡",
-        "title": "Réparer un pipeline CI/CD",
-        "price": "$999",
-        "description": "Déboguez et réparez un pipeline CI/CD défaillant. Comprend une analyse des causes racines et une documentation.",
-        "items": [
-          "GitHub Actions / Jenkins / GitLab CI",
-          "Audit & diagnostic du pipeline",
-          "Correction + vérification",
-          "Livraison en 2–3 jours ouvrables"
-        ]
-      },
-      {
-        "icon": "🐳",
-        "title": "Dockeriser votre application",
-        "price": "$699",
-        "description": "Conteneurisez votre application existante avec des Dockerfiles multi-étapes et une configuration docker-compose.",
-        "items": [
-          "Dockerfile multi-étapes",
-          "docker-compose pour le dev local",
-          "Optimisation de la taille d'image",
-          "Push vers un registry (Docker Hub / ECR)"
-        ]
-      },
-      {
-        "icon": "☁️",
-        "title": "Configuration AWS / GCP",
-        "price": "$899",
-        "description": "Provisionnez et configurez un environnement cloud prêt pour la production avec VPC, IAM et réseaux de base.",
-        "items": [
-          "VPC + sous-réseaux + groupes de sécurité",
-          "Rôles IAM & politique du moindre privilège",
-          "Configuration EC2 / Cloud Run",
-          "Monitoring & alertes de base"
-        ]
-      },
-      {
-        "icon": "🐛",
-        "title": "Corriger un bug frontend",
-        "price": "$599",
-        "description": "Diagnostiquez et corrigez un bug critique ou un problème de performance dans votre application React, Vue ou Next.js.",
-        "items": [
-          "Analyse des causes racines",
-          "React / Vue / Next.js / Angular",
-          "Correction + test de régression",
-          "Livraison en 1–2 jours ouvrables"
-        ]
-      }
-    ],
-    "package_items": [
-      {
-        "icon": "🔄",
-        "title": "Automatisation CI/CD",
-        "price": "$3,500–$8,000",
-        "description": "Automatisation complète des pipelines du commit de code au déploiement en production.",
-        "items": [
-          "Conception de pipeline multi-étapes",
-          "Automatisation test, build, déploiement",
-          "Gestion des secrets",
-          "Rollback & alertes"
-        ]
-      },
-      {
-        "icon": "☁️",
-        "title": "Migration Cloud",
-        "price": "$6,000–$15,000",
-        "description": "Lift-and-shift ou re-architecturer vos charges de travail vers AWS, GCP ou Azure.",
-        "items": [
-          "Conception & planification de l'architecture",
-          "IaC avec Terraform",
-          "Migration sans interruption de service",
-          "Revue d'optimisation des coûts"
-        ]
-      },
-      {
-        "icon": "☸️",
-        "title": "Plateforme Kubernetes",
-        "price": "$4,000–$9,000",
-        "description": "Cluster Kubernetes de niveau production avec tout ce qu'il faut pour opérer en toute confiance.",
-        "items": [
-          "Configuration cluster (EKS / GKE / AKS)",
-          "Charts Helm & GitOps",
-          "Autoscaling & limites de ressources",
-          "Stack d'observabilité"
-        ]
+        "icon": "🎓",
+        "title": "Sites de Collèges & Universités",
+        "description": "Sites institutionnels modernes pour collèges, facultés ou associations étudiantes — accessibles et faciles à maintenir.",
+        "items": ["Catalogue de programmes & cours", "Actualités, événements & annonces", "Annuaire du personnel & espace admin", "Design responsive et accessible"]
       },
       {
         "icon": "🌐",
-        "title": "Application Web Full-Stack",
-        "price": "à partir de $5,000",
-        "description": "Application web sur mesure avec des technologies modernes — de la remise du design au lancement en production.",
-        "items": [
-          "Frontend React / Next.js",
-          "API Node.js / Java / Python",
-          "Conception & migrations de base de données",
-          "Pipeline CI/CD inclus"
-        ],
-        "popular": true
+        "title": "Sites Vitrines & Portfolio",
+        "description": "De la landing page au site corporate complet. Rapide, optimisé SEO, conçu pour convertir.",
+        "items": ["Next.js ou site statique", "Intégration CMS (Sanity, Strapi…)", "SEO & performance optimisés", "Support multilingue"]
       },
       {
         "icon": "📱",
-        "title": "Application Mobile (iOS & Android)",
-        "price": "à partir de $8,500",
-        "description": "Application mobile multiplateforme livrée sur l'App Store et Google Play.",
-        "items": [
-          "React Native ou Flutter",
-          "iOS + Android depuis une seule base de code",
-          "Intégration API backend",
-          "Soumission App Store & Play Store"
-        ]
+        "title": "Applications Mobiles",
+        "description": "Applications mobiles multiplateformes iOS et Android — du MVP jusqu'à la version production soignée.",
+        "items": ["React Native ou Flutter", "iOS + Android depuis une seule base de code", "Intégration API backend", "Soumission App Store & Play Store"]
+      },
+      {
+        "icon": "🏋️",
+        "title": "App Web pour Complexes Sportifs",
+        "description": "Plateformes sur mesure pour gymnases, clubs et complexes sportifs — réservations, abonnements, planning et portail coaches.",
+        "items": ["Système de réservation & planning", "Gestion des abonnements & facturation", "Tableau de bord coach / entraîneur", "Design mobile-first"],
+        "popular": true
+      },
+      {
+        "icon": "🔌",
+        "title": "APIs REST & GraphQL",
+        "description": "APIs bien conçues pour les domaines complexes — complexes sportifs, plateformes SaaS ou toute logique métier personnalisée.",
+        "items": ["Design RESTful ou GraphQL", "Auth (JWT, OAuth2)", "Rate limiting & documentation", "Spec OpenAPI / Swagger"]
+      },
+      {
+        "icon": "🛒",
+        "title": "E-Commerce & Marketplaces",
+        "description": "Boutiques en ligne et plateformes marketplace, du catalogue produit simple aux configurations multi-vendeurs complexes.",
+        "items": ["Catalogue & panier", "Passerelle de paiement (Stripe, PayPal)", "Gestion des commandes", "Tableau de bord admin"]
       }
     ],
-    "retainer_items": [
+
+    "engineering_items": [
       {
-        "icon": "⏱",
-        "title": "Taux horaire",
-        "price": "$150–$200",
-        "price_suffix": "/ heure",
-        "description": "Idéal pour les projets à court terme, les audits ou les engagements en temps et matériaux.",
-        "items": [
-          "Aucun engagement à long terme",
-          "Rapports de temps hebdomadaires",
-          "Disponible sur les fuseaux horaires US",
-          "Minimum 5 heures / engagement"
-        ]
+        "icon": "🔄",
+        "title": "Automatisation CI/CD",
+        "description": "Pipeline complet du commit au déploiement en production — tests automatisés, builds, déploiements et rollbacks.",
+        "items": ["GitHub Actions / Jenkins / GitLab CI", "Conception de pipeline multi-étapes", "Gestion des secrets", "Rollback & alertes"]
+      },
+      {
+        "icon": "☁️",
+        "title": "Architecture Cloud",
+        "description": "Environnements cloud prêts pour la production sur AWS, GCP ou Azure — fiables et optimisés en coût.",
+        "items": ["VPC, IAM, configuration réseau", "IaC avec Terraform", "Déploiement sans interruption", "Revue d'optimisation des coûts"]
+      },
+      {
+        "icon": "☸️",
+        "title": "Kubernetes & Conteneurs",
+        "description": "Conteneurisation et mise en place de clusters Kubernetes pour des charges de travail évolutives et observables.",
+        "items": ["Dockerfiles multi-étapes", "Cluster EKS / GKE / AKS", "Charts Helm & GitOps", "Autoscaling & observabilité"]
+      },
+      {
+        "icon": "🏗️",
+        "title": "Architecture Full-Stack",
+        "description": "Du monolithe aux microservices — conception et développement de systèmes backend évolutifs qui grandissent avec le produit.",
+        "items": ["Design système & ADRs", "Node.js / Java / Python / Go", "Conception & migrations BDD", "Queues de messages & patterns async"],
+        "popular": true
+      },
+      {
+        "icon": "📐",
+        "title": "Audit d'Architecture Technique",
+        "description": "Audit de votre système existant et feuille de route claire pour améliorer scalabilité, sécurité et maintenabilité.",
+        "items": ["Audit code & infrastructure", "Identification des goulots & risques", "Recommandations écrites", "Session Q&R de suivi"]
+      }
+    ],
+
+    "support_items": [
+      {
+        "icon": "🎒",
+        "title": "Support Projets Étudiants",
+        "description": "Aide aux étudiants pour concrétiser leurs projets académiques — tout langage, toute stack. De l'idée à la démo fonctionnelle.",
+        "items": ["Tout langage de programmation", "Projet web, mobile ou backend", "Sessions de développement guidées", "Relecture & corrections de code"],
+        "popular": true
+      },
+      {
+        "icon": "🔍",
+        "title": "Revue de Code & Refactoring",
+        "description": "Analyse approfondie de votre base de code avec retours concrets sur l'architecture, la sécurité et les bonnes pratiques.",
+        "items": ["Revue sécurité & bugs", "Analyse des performances", "Feuille de route de refactoring", "Rapport écrit détaillé"]
+      },
+      {
+        "icon": "🐛",
+        "title": "Débogage & Corrections",
+        "description": "Bloqué sur un bug difficile ? Diagnostic et correction rapides pour les problèmes frontend, backend ou infrastructure.",
+        "items": ["Analyse des causes racines", "React / Vue / Next.js / Node", "Problèmes cloud & DevOps", "Correction + test de régression"]
       },
       {
         "icon": "📅",
-        "title": "Forfait mensuel",
-        "price": "à partir de $4,500",
-        "price_suffix": "/ mois",
-        "description": "Capacité d'ingénierie dédiée et continue — code, architecture, mentorat et livraison.",
-        "items": [
-          "20–40 h/mois garanti",
-          "Temps de réponse prioritaire",
-          "Revues d'architecture incluses",
-          "Résiliation à tout moment avec 30 jours de préavis"
-        ],
-        "popular": true
+        "title": "Forfait Mensuel",
+        "description": "Capacité d'ingénierie dédiée chaque mois — code, architecture, mentorat et livraison.",
+        "items": ["Heures flexibles par mois", "Temps de réponse prioritaire", "Revues d'architecture incluses", "Résiliation à tout moment"]
       }
     ]
   },
