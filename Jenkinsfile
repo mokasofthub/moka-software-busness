@@ -9,7 +9,8 @@ buildNextApp(
     ecrRepository: 'moka-software-business',
     ecsCluster:    'moka-cluster',
     ecsService:    'moka-service',
-    containerName: 'moka-software-business',
-    // cloudfrontDistributionId: uncomment and set once CloudFront is created
-    // cloudfrontDistributionId: 'EXXXXXXXXXXXXX'
+    containerName:           'moka-software-business',
+    cloudfrontDistributionId: 'E2MZ1JOJMAKL7T',
+    route53HostedZoneId:      'Z060171628JQ5P7XSLA4C',
+    originRecordName:         'origin.mokasoftwarebusness.com'
 )
