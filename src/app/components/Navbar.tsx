@@ -74,7 +74,7 @@ function Flag({ code }: { code: string }) {
   return <span className="inline-flex items-center shrink-0">{flags[code] ?? null}</span>;
 }
 
-const NAV_KEYS = ['about', 'services', 'skills', 'projects', 'pricing'] as const;
+const NAV_KEYS = ['about', 'services', 'skills', 'projects', 'monitoring', 'pricing'] as const;
 
 export default function Navbar() {
   const t = useTranslations('nav');

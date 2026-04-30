@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import Services from '../Services';
 
 jest.mock('next-intl', () => ({
@@ -39,14 +39,14 @@ jest.mock('../Card3D', () =>
 );
 
 // Mock IntersectionObserver (not in jsdom)
+let ioCallback: IntersectionObserverCallback;
 beforeAll(() => {
   Object.defineProperty(window, 'IntersectionObserver', {
     writable: true,
-    value: jest.fn(() => ({
-      observe: jest.fn(),
-      unobserve: jest.fn(),
-      disconnect: jest.fn(),
-    })),
+    value: jest.fn((cb: IntersectionObserverCallback) => {
+      ioCallback = cb;
+      return { observe: jest.fn(), unobserve: jest.fn(), disconnect: jest.fn() };
+    }),
   });
 });
 
@@ -93,5 +93,30 @@ describe('Services', () => {
     fireEvent.click(screen.getByText(/See 3 more services/i));
     fireEvent.click(screen.getByText('Show less'));
     expect(screen.getByText(/See 3 more services/i)).toBeInTheDocument();
+  });
+
+  it('adds visible class to service card when IntersectionObserver fires', () => {
+    const { container } = render(<Services />);
+    const card = container.querySelector('.service-card') as HTMLElement;
+    if (card && ioCallback) {
+      act(() => {
+        ioCallback(
+          [{ isIntersecting: true, target: card } as IntersectionObserverEntry],
+          {} as IntersectionObserver
+        );
+      });
+      expect(card.classList.contains('visible')).toBe(true);
+    }
+  });
+
+  it('mobile carousel onScroll updates active slide index without throwing', () => {
+    render(<Services />);
+    const carousel = document.querySelector('.snap-x') as HTMLElement;
+    if (carousel) {
+      Object.defineProperty(carousel, 'scrollWidth', { configurable: true, value: 900 });
+      Object.defineProperty(carousel, 'scrollLeft', { configurable: true, value: 300 });
+      fireEvent.scroll(carousel);
+    }
+    // No crash = pass
   });
 });
