@@ -40,6 +40,7 @@ describe('Card3D', () => {
   });
 
   it('clears transform on mouse leave', () => {
+    jest.useFakeTimers();
     const { container } = render(<Card3D>child</Card3D>);
     const card = container.firstElementChild as HTMLElement;
 
@@ -52,7 +53,9 @@ describe('Card3D', () => {
     expect(card.style.transform).not.toBe('');
 
     fireEvent.mouseLeave(card);
+    jest.advanceTimersByTime(400);
     expect(card.style.transform).toBe('');
+    jest.useRealTimers();
   });
 
   it('shows glare overlay on mouse move and hides it on leave', () => {

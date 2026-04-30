@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Card3D from './Card3D';
 
@@ -149,6 +149,8 @@ export default function Projects() {
   const rawItems = t.raw('items') as Project[];
   const caseStudies = t.raw('case_studies') as CaseStudy[];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   return (
     <section id="projects" className="py-24">
@@ -163,7 +165,87 @@ export default function Projects() {
           {t('subheading')}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        {/* ── Mobile: horizontal snap carousel ── */}
+        <div
+          ref={carouselRef}
+          onScroll={(e) => {
+            const el = e.currentTarget;
+            const cardWidth = el.scrollWidth / rawItems.length;
+            setActiveSlide(Math.round(el.scrollLeft / cardWidth));
+          }}
+          className="md:hidden -mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2
+          [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {rawItems.map((p, i) => {
+            const cfg = PROJECT_CONFIG[i % PROJECT_CONFIG.length];
+            return (
+              <div
+                key={i}
+                className="carousel-card snap-center shrink-0 w-[88vw] max-w-[340px] relative bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden flex flex-col shadow-[var(--card-shadow)] carousel-card-inner"
+              >
+                {/* Gradient banner */}
+                <div className={`h-28 bg-gradient-to-br ${cfg.gradient} relative flex items-end px-5 pb-4`}>
+                  <span className="text-xs font-semibold text-white/90 uppercase tracking-widest bg-black/25 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                    {cfg.labelKey}
+                  </span>
+                  <span className="absolute top-4 right-5 font-mono text-xs font-bold text-white/30">
+                    {String(i + 1).padStart(2, '0')}&thinsp;/&thinsp;{String(rawItems.length).padStart(2, '0')}
+                  </span>
+                  <div className="absolute inset-0 opacity-10 mix-blend-overlay" style={{
+                    backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'0.4\'/%3E%3C/svg%3E")'
+                  }} />
+                </div>
+                {/* Content */}
+                <div className="p-5 flex flex-col gap-2.5 flex-1">
+                  <div className="flex gap-1.5 flex-wrap">
+                    {p.tech.map((tag) => (
+                      <span key={tag} className={`text-xs border px-2 py-0.5 rounded-full ${cfg.tagBg}`}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="font-heading font-semibold text-[var(--text-primary)] text-base leading-snug">
+                    {p.title}
+                  </h3>
+                  <p className="text-[var(--text-muted)] text-sm leading-relaxed flex-1 line-clamp-3">
+                    {p.description}
+                  </p>
+                  <button
+                    onClick={() => setOpenIndex(i)}
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-400 mt-1"
+                  >
+                    {t('view_case_study')}
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+          <div className="shrink-0 w-4" />
+        </div>
+
+        {/* ── Segmented indicator ── */}
+        <div className="md:hidden flex items-center justify-center gap-3 mt-4 mb-2">
+          <div className="flex gap-1 items-center">
+            {rawItems.map((_, i) => (
+              <span key={i} className={`block h-[3px] rounded-full transition-all duration-300 ${
+                i === activeSlide
+                  ? 'w-7 bg-indigo-400 shadow-[0_0_8px] shadow-indigo-400/60'
+                  : Math.abs(i - activeSlide) === 1
+                  ? 'w-2 bg-indigo-400/30'
+                  : 'w-1.5 bg-[var(--border-color)]'
+              }`} />
+            ))}
+          </div>
+          <span className="font-mono text-[10px] tabular-nums text-[var(--text-muted)]/50">
+            {String(activeSlide + 1).padStart(2, '0')}&thinsp;/&thinsp;{String(rawItems.length).padStart(2, '0')}
+          </span>
+        </div>
+
+        {/* ── Desktop: grid ── */}
+        <div className="hidden md:grid md:grid-cols-3 gap-7">
           {rawItems.map((p, i) => {
             const cfg = PROJECT_CONFIG[i % PROJECT_CONFIG.length];
             return (
@@ -180,7 +262,6 @@ export default function Projects() {
                     backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'0.4\'/%3E%3C/svg%3E")'
                   }} />
                 </div>
-
                 {/* Content */}
                 <div className="p-7 flex flex-col gap-3 flex-1">
                   <div className="flex gap-1.5 flex-wrap">
@@ -190,14 +271,12 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-
                   <h3 className="font-heading font-semibold text-[var(--text-primary)] text-lg leading-snug">
                     {p.title}
                   </h3>
                   <p className="text-[var(--text-muted)] text-sm leading-relaxed flex-1">
                     {p.description}
                   </p>
-
                   <button
                     onClick={() => setOpenIndex(i)}
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors mt-1 group/link"
