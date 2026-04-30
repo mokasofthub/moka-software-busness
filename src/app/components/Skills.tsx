@@ -122,6 +122,39 @@ const TIER_LABELS: Record<1 | 2 | 3, string> = {
   3: 'Familiar',
 };
 
+function SkillCard({ group }: { group: SkillGroup }) {
+  return (
+    <Card3D className="group relative bg-[var(--bg-card)] border border-[var(--border-color)] rounded-card overflow-hidden shadow-[var(--card-shadow)] hover:shadow-[var(--card-shadow-hover)] hover:border-transparent transition-all duration-300 w-72 shrink-0">
+      <div className={`h-1 bg-gradient-to-r ${group.gradientFrom} ${group.gradientTo}`} />
+      <div className="p-7">
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-xl ${group.accentBg} flex items-center justify-center text-lg`}>
+              <span className={group.accentText}>{group.icon}</span>
+            </div>
+            <h4 className="font-heading font-semibold text-[var(--text-primary)] text-sm">
+              {group.title}
+            </h4>
+          </div>
+          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${group.accentBg} ${group.accentText}`}>
+            {group.skills.length}
+          </span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {group.skills.map(({ name }) => (
+            <span
+              key={name}
+              className="text-xs px-2.5 py-1 rounded-full border bg-[var(--input-bg)] border-[var(--border-color)] text-[var(--text-secondary)]"
+            >
+              {name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </Card3D>
+  );
+}
+
 export default function Skills() {
   const t = useTranslations('skills');
   return (
@@ -134,45 +167,22 @@ export default function Skills() {
           {t('headline')}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-          {SKILL_GROUPS.map((group) => (
-            <Card3D
-              key={group.title}
-              className="group relative bg-[var(--bg-card)] border border-[var(--border-color)] rounded-card overflow-hidden shadow-[var(--card-shadow)] hover:shadow-[var(--card-shadow-hover)] hover:border-transparent transition-all duration-300"
-            >
-              {/* Gradient top strip */}
-              <div className={`h-1 bg-gradient-to-r ${group.gradientFrom} ${group.gradientTo}`} />
+        {/* Row 1 — scrolls left */}
+        <div className="marquee-track overflow-hidden mb-6">
+          <div className="flex gap-7 animate-marquee-left w-max">
+            {[...SKILL_GROUPS.slice(0, 5), ...SKILL_GROUPS.slice(0, 5)].map((group, i) => (
+              <SkillCard key={`r1-${i}`} group={group} />
+            ))}
+          </div>
+        </div>
 
-              <div className="p-7">
-                {/* Group header */}
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-xl ${group.accentBg} flex items-center justify-center text-lg`}>
-                      <span className={group.accentText}>{group.icon}</span>
-                    </div>
-                    <h4 className="font-heading font-semibold text-[var(--text-primary)] text-sm">
-                      {group.title}
-                    </h4>
-                  </div>
-                  {/* Skill count badge */}
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${group.accentBg} ${group.accentText}`}>
-                    {group.skills.length}
-                  </span>
-                </div>
-
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map(({ name }) => (
-                  <span
-                    key={name}
-                    className="text-xs px-2.5 py-1 rounded-full border bg-[var(--input-bg)] border-[var(--border-color)] text-[var(--text-secondary)]"
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
-              </div>
-            </Card3D>
-          ))}
+        {/* Row 2 — scrolls right */}
+        <div className="marquee-track overflow-hidden">
+          <div className="flex gap-7 animate-marquee-right w-max">
+            {[...SKILL_GROUPS.slice(4), ...SKILL_GROUPS.slice(4)].map((group, i) => (
+              <SkillCard key={`r2-${i}`} group={group} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

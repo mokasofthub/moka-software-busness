@@ -1,19 +1,21 @@
 <div align="center">
 
-# MokaSoftware Business
+<h1>MokaSoftware Business</h1>
 
-**Portfolio & Client-Facing Marketing Site**
+<p><strong>Production-grade Next.js 14 portfolio &middot; Containerised &middot; Automated CI/CD to AWS ECS Fargate</strong></p>
 
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)
-![Jest](https://img.shields.io/badge/Jest-tested-C21325?style=flat-square&logo=jest&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white)
-![AWS ECS](https://img.shields.io/badge/AWS-ECS-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
-![Jenkins](https://img.shields.io/badge/CI%2FCD-Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)
+<p>
+  <img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js" alt="Next.js">
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Docker-ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/AWS_ECS-Fargate-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS ECS">
+  <img src="https://img.shields.io/badge/Jenkins-CI%2FCD-D24939?style=for-the-badge&logo=jenkins&logoColor=white" alt="Jenkins">
+  <img src="https://img.shields.io/badge/Jest-96_tests-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest">
+</p>
 
 Personal freelance portfolio for **Bernard D. Mokalo** — Principal Software Engineer & DevOps/Cloud specialist.  
-Available in **5 languages** · **Dark/light theme** · **Containerised** · **CI/CD to AWS**
+Available in **5 languages** &middot; **Dark / light theme** &middot; **Containerised** &middot; **Automated CI/CD to AWS**
 
 </div>
 
@@ -21,109 +23,102 @@ Available in **5 languages** · **Dark/light theme** · **Containerised** · **C
 
 ## Table of Contents
 
-- [Overview](#overview)
 - [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
+- [Architecture](#architecture)
 - [Project Structure](#project-structure)
-- [Testing](#testing)
-- [Building for Production](#building-for-production)
-- [Docker](#docker)
-- [CI/CD — Jenkins → AWS](#cicd--jenkins--aws)
-- [AWS Cost Guide](#aws-cost-guide)
+- [Running Locally](#running-locally)
+- [Running Tests Locally](#running-tests-locally)
+- [Docker (local container)](#docker-local-container)
+- [CI/CD Pipeline](#cicd-pipeline)
 - [Environment Variables](#environment-variables)
+- [AWS Cost Guide](#aws-cost-guide)
 - [Customisation](#customisation)
 - [License](#license)
 
 ---
 
-## Overview
-
-MokaSoftware Business is a production-grade SSR portfolio with a full client-facing marketing site. It is built for performance, accessibility, and maintainability.
-
-### Sections
-
-| Section | Description |
-|---|---|
-| **Hero** | Name, title, key metrics (10+ yrs · 60+ projects · 30+ clients) and primary CTAs |
-| **About** | Professional bio, specialisations, and technology tags |
-| **Services** | 12 service cards — CI/CD, Cloud Architecture, Kubernetes, Full-Stack, Mobile, and more |
-| **Skills** | Technology inventory grouped by category with labelled chips |
-| **Projects** | Selected case studies with technology tags and external links |
-| **Pricing** | Three-tab table — Quick Fixes · Projects · Hourly retainer |
-| **Contact** | Validated form submitted via Formspree (no server-side email infrastructure required) |
-
-### Highlights
-
-- **Dark / light mode** — persisted in `localStorage`, defaults to dark
-- **5 languages** — English, French, Spanish, German, Portuguese; switchable from the navbar
-- **3D card effect** — mouse-tracking tilt and glare on every card (`Card3D`)
-- **Mobile-first** — responsive across all breakpoints with a collapsible drawer nav
-- **SSR + standalone output** — `output: 'standalone'` for containerised deployment
-
----
-
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | [Next.js 14](https://nextjs.org) — App Router, Server-Side Rendering |
-| Language | TypeScript 5 |
-| Styling | Tailwind CSS 3 · CSS custom properties (light/dark tokens) |
-| Internationalisation | [next-intl 3](https://next-intl-docs.vercel.app) — 5 locales |
-| Fonts | Inter · Space Grotesk via `next/font/google` |
-| Contact form | [Formspree](https://formspree.io) — zero backend dependency |
-| Testing | Jest · React Testing Library · `@testing-library/user-event` |
-| Container | Docker — Node 20 Alpine, multi-stage, non-root user |
-| CI/CD | Jenkins Declarative Pipeline |
-| Image registry | Amazon ECR |
-| Hosting | Amazon ECS (Fargate) |
+| Layer | Technology | Notes |
+|---|---|---|
+| **Framework** | [Next.js 14](https://nextjs.org) | App Router · SSR · `output: 'standalone'` for Docker |
+| **Language** | TypeScript 5 | Strict mode enabled |
+| **Styling** | Tailwind CSS 3 + CSS custom properties | Design tokens for light/dark theme |
+| **i18n** | [next-intl 3](https://next-intl-docs.vercel.app) | 5 locales: `en` · `fr` · `es` · `de` · `pt` |
+| **Fonts** | Inter · Space Grotesk | Via `next/font/google` (zero layout shift) |
+| **Contact form** | [Formspree](https://formspree.io) | No backend / email server required |
+| **Testing** | Jest 30 · React Testing Library · `@testing-library/user-event` | 12 test files · 96 tests |
+| **Container** | Docker — Node 20 Alpine, 3-stage build | Non-root user · ~150 MB final image |
+| **CI/CD** | Jenkins Declarative Pipeline | Shared library [`jenkins-nextjs-lib`](https://github.com/mokasofthub/jenkins-nextjs-lib) |
+| **Image registry** | Amazon ECR | Auto-created · lifecycle: keep last 5 images |
+| **Compute** | Amazon ECS Fargate | 256 CPU · 512 MB · public subnet · port 3000 |
+| **CDN** | Amazon CloudFront | HTTPS · edge caching · custom domain |
 
 ---
 
-## Prerequisites
+## Architecture
 
-| Tool | Version |
-|---|---|
-| Node.js | ≥ 20 |
-| npm | ≥ 10 |
-| Docker *(optional — local image builds)* | ≥ 24 |
-| AWS CLI *(optional — manual deployments)* | ≥ 2 |
+### Production infrastructure
 
----
-
-## Getting Started
-
-### 1. Clone and install
-
-```bash
-git clone https://github.com/mokasofthub/moka-software-busness.git
-cd moka-software-busness
-npm install
+```
+  User (browser / mobile)
+          │  HTTPS
+          ▼
+  ┌───────────────────┐
+  │   CloudFront CDN  │  ← HTTPS termination · edge caching · DDoS protection
+  └───────────────────┘
+          │  HTTP (origin request)
+          ▼
+  ┌─────────────────────────────────────────┐
+  │           AWS ECS Fargate               │
+  │  ┌───────────────────────────────────┐  │
+  │  │  Next.js 14  (standalone mode)    │  │  256 CPU · 512 MB · public subnet
+  │  │  Node 20 Alpine container         │  │  Port 3000
+  │  └───────────────────────────────────┘  │
+  └─────────────────────────────────────────┘
+          │  pulls image on deploy
+          ▼
+  ┌───────────────────┐
+  │   Amazon ECR      │  ← Container image registry · lifecycle: keep last 5
+  └───────────────────┘
 ```
 
-### 2. Start the development server
+### CI/CD flow
 
-```bash
-npm run dev
+```
+  Developer
+      │  git push / open PR
+      ▼
+  GitHub repository
+      │  webhook  →  POST /github-webhook/
+      ▼
+  Jenkins (EC2)
+      │
+      ├─ [all branches & PRs]
+      │     Checkout → Install → Lint → Test → Build
+      │
+      └─ [main branch only]
+            Docker Build & Push to ECR
+                  → Register new ECS task definition
+                  → aws ecs update-service
+                  → wait services-stable
+                  → CloudFront cache invalidation
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The app hot-reloads on every file change.
+### Application layers
 
-> Locale routes: `/fr` · `/es` · `/de` · `/pt`  
-> English is served at `/` (no prefix required).
-
-### 3. Scripts reference
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Start the development server |
-| `npm run build` | Compile a production build (`output: 'standalone'`) |
-| `npm start` | Start the compiled production server |
-| `npm run lint` | Run ESLint across the entire project |
-| `npm test` | Run the full test suite once |
-| `npm run test:watch` | Re-run affected tests on every file save |
-| `npm run test:coverage` | Run tests and generate a coverage report |
+```
+  messages/           ← Translation JSON (en / fr / es / de / pt)
+      │
+  src/middleware.ts   ← next-intl routing (locale detection & redirect)
+      │
+  src/app/[locale]/   ← Per-locale layout + root page
+      │
+  src/app/components/ ← All UI sections: Hero · About · Services · Projects ·
+      │                  Pricing · Skills · Contact · Navbar · Footer · BottomNav
+      │
+  src/lib/utils.ts    ← Pure shared helpers (e.g. isValidEmail)
+```
 
 ---
 
@@ -132,52 +127,65 @@ Open [http://localhost:3000](http://localhost:3000). The app hot-reloads on ever
 ```
 moka-software-business/
 │
-├── messages/                        # Translation files (one per locale)
+├── messages/                        # i18n translation files (one JSON per locale)
 │   ├── en.json
 │   ├── fr.json
 │   ├── es.json
 │   ├── de.json
 │   └── pt.json
 │
-├── public/                          # Static assets (images, icons, fonts)
+├── public/                          # Static assets — icons, manifest.json
 │
 ├── src/
 │   ├── app/
 │   │   ├── [locale]/
-│   │   │   ├── layout.tsx           # Per-locale layout — ThemeProvider + NextIntlClientProvider
+│   │   │   ├── layout.tsx           # Per-locale layout (ThemeProvider + NextIntlClientProvider)
 │   │   │   └── page.tsx             # Root page — assembles all section components
 │   │   │
 │   │   ├── components/
-│   │   │   ├── __tests__/           # Component unit tests
-│   │   │   ├── About.tsx
+│   │   │   ├── About.tsx            # Bio, skill tags, quick-fact cards
 │   │   │   ├── BackToTop.tsx        # Floating scroll-to-top button
 │   │   │   ├── BottomNav.tsx        # Mobile floating navigation bar
+│   │   │   ├── BrandLogo.tsx        # Shared logo wordmark
 │   │   │   ├── Card3D.tsx           # Mouse-tracking 3D tilt + glare wrapper
-│   │   │   ├── Contact.tsx          # Validated form → Formspree
-│   │   │   ├── Footer.tsx
-│   │   │   ├── Hero.tsx
-│   │   │   ├── Navbar.tsx           # Sticky nav · theme toggle · language switcher · mobile drawer
-│   │   │   ├── Pricing.tsx
-│   │   │   ├── Projects.tsx
-│   │   │   ├── Services.tsx
-│   │   │   ├── Skills.tsx
-│   │   │   └── ThemeProvider.tsx    # React context — dark/light state + localStorage persistence
+│   │   │   ├── Contact.tsx          # Client-side validated form → Formspree
+│   │   │   ├── Footer.tsx           # Footer links + copyright
+│   │   │   ├── Hero.tsx             # Name, title, key metrics, primary CTAs
+│   │   │   ├── Navbar.tsx           # Sticky nav · theme toggle · locale switcher · drawer
+│   │   │   ├── Pricing.tsx          # 3-tab service catalog (web / engineering / support)
+│   │   │   ├── Projects.tsx         # Case study cards + modal
+│   │   │   ├── Services.tsx         # 9-card service grid with expand/collapse
+│   │   │   ├── Skills.tsx           # Technology inventory grouped by category
+│   │   │   ├── ThemeProvider.tsx    # React context — dark/light + localStorage persistence
+│   │   │   │
+│   │   │   └── __tests__/           # Component test files (Jest + RTL)
+│   │   │       ├── About.test.tsx
+│   │   │       ├── BottomNav.test.tsx
+│   │   │       ├── Card3D.test.tsx
+│   │   │       ├── Contact.test.tsx
+│   │   │       ├── Footer.test.tsx
+│   │   │       ├── Hero.test.tsx
+│   │   │       ├── Navbar.test.tsx
+│   │   │       ├── Pricing.test.tsx
+│   │   │       ├── Projects.test.tsx
+│   │   │       ├── Services.test.tsx
+│   │   │       └── ThemeProvider.test.tsx
 │   │   │
-│   │   ├── globals.css              # CSS custom property tokens · Tailwind layers · utilities
-│   │   └── layout.tsx               # Root layout
+│   │   ├── globals.css              # CSS tokens · Tailwind layers · animations
+│   │   └── layout.tsx               # Root layout (HTML lang attribute)
 │   │
 │   ├── lib/
-│   │   └── utils.ts                 # Shared pure helpers (e.g. isValidEmail)
+│   │   └── utils.ts                 # Pure helpers (isValidEmail, etc.)
 │   │
 │   ├── __tests__/
-│   │   └── utils.test.ts
+│   │   └── utils.test.ts            # Unit tests for utils
 │   │
-│   ├── i18n.ts                      # next-intl configuration (locales, defaultLocale)
+│   ├── i18n.ts                      # next-intl config (locales, defaultLocale)
 │   └── middleware.ts                # next-intl routing middleware
 │
 ├── Dockerfile                       # Multi-stage production container image
 ├── .dockerignore
-├── Jenkinsfile                      # Declarative CI/CD pipeline (lint → build → ECR → ECS)
+├── Jenkinsfile                      # CI/CD entry point — uses jenkins-nextjs-lib
 ├── jest.config.ts
 ├── jest.setup.ts
 ├── next.config.mjs
@@ -187,92 +195,196 @@ moka-software-business/
 
 ---
 
-## Testing
+## Running Locally
 
-The project uses **Jest** with **React Testing Library** and **`@testing-library/user-event`** for full user-interaction simulation.
+### Prerequisites
 
-### Run all tests
+Make sure the following tools are installed before you begin:
+
+| Tool | Minimum version | Check |
+|---|---|---|
+| Node.js | 20 | `node --version` |
+| npm | 10 | `npm --version` |
+| Git | any | `git --version` |
+| Docker *(optional — only for container testing)* | 24 | `docker --version` |
+
+---
+
+### Step 1 — Clone the repository
+
+```bash
+git clone https://github.com/mokasofthub/moka-software-busness.git
+cd moka-software-busness
+```
+
+---
+
+### Step 2 — Install dependencies
+
+```bash
+npm install
+```
+
+This installs all runtime and dev dependencies listed in `package.json`.
+
+---
+
+### Step 3 — Configure environment variables
+
+The only required variable is your Formspree form ID (used by the contact form).
+
+```bash
+# Create the local env file (never committed — already in .gitignore)
+cp .env.example .env.local
+```
+
+Then open `.env.local` and set:
+
+```env
+NEXT_PUBLIC_FORMSPREE_FORM_ID=your_form_id_here
+```
+
+> **Where to get your form ID:** Create a free form at [formspree.io](https://formspree.io).  
+> If you just want to browse the UI without the contact form working, you can leave this blank — the form will simply fail on submission.
+
+---
+
+### Step 4 — Start the development server
+
+```bash
+npm run dev
+```
+
+The server starts at **[http://localhost:3000](http://localhost:3000)**.
+
+The app hot-reloads on every file save — no manual restarts needed.
+
+**Available locale routes:**
+
+| URL | Locale |
+|---|---|
+| `http://localhost:3000` | English (default) |
+| `http://localhost:3000/fr` | French |
+| `http://localhost:3000/es` | Spanish |
+| `http://localhost:3000/de` | German |
+| `http://localhost:3000/pt` | Portuguese |
+
+---
+
+### All available scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the hot-reloading development server |
+| `npm run build` | Compile a production build (`output: 'standalone'`) |
+| `npm start` | Start the compiled production server (requires `npm run build` first) |
+| `npm run lint` | Run ESLint across all source files |
+| `npm test` | Run the full test suite once and exit |
+| `npm run test:watch` | Re-run affected tests on every file save |
+| `npm run test:coverage` | Run tests and generate an HTML coverage report |
+
+---
+
+## Running Tests Locally
+
+The project uses **Jest 30** + **React Testing Library** + **`@testing-library/user-event`**.
+
+---
+
+### Step 1 — Run all tests once
 
 ```bash
 npm test
 ```
 
-### Watch mode
+Expected output:
+
+```
+Test Suites: 12 passed, 12 total
+Tests:       96 passed, 96 total
+Time:        ~2s
+```
+
+---
+
+### Step 2 — Run tests in watch mode (during development)
 
 ```bash
 npm run test:watch
 ```
 
-Only the tests affected by your latest change are re-run — fast feedback during development.
+Jest will watch for file changes and automatically re-run only the tests affected by your edits. Press `a` to force a full run, `q` to quit.
 
-### Coverage report
+---
+
+### Step 3 — Run a specific test file
+
+```bash
+# Run only the Contact tests
+npm test -- --testPathPattern="Contact"
+
+# Run only component tests
+npm test -- --testPathPattern="components"
+
+# Run tests matching a specific test name
+npm test -- --testNamePattern="validates email"
+```
+
+---
+
+### Step 4 — Generate a coverage report
 
 ```bash
 npm run test:coverage
 ```
 
-A summary table is printed to the terminal. A detailed, line-by-line HTML report is written to `coverage/lcov-report/index.html`:
+An HTML report is written to `coverage/lcov-report/index.html`. Open it in your browser:
 
 ```bash
-# macOS — open the report directly in the browser
-npm run test:coverage && open coverage/lcov-report/index.html
+# macOS
+open coverage/lcov-report/index.html
+
+# Linux
+xdg-open coverage/lcov-report/index.html
+
+# Or navigate manually in any browser
 ```
-
-### Scoped runs
-
-```bash
-# Single component
-npm test -- --testPathPattern="Contact"
-
-# All component tests
-npm test -- --testPathPattern="components"
-
-# Coverage scoped to source files only
-npm test -- --coverage --collectCoverageFrom="src/**/*.{ts,tsx}"
-```
-
-### Test coverage map
-
-| File | What is covered |
-|---|---|
-| `utils.test.ts` | `isValidEmail` — valid addresses, malformed addresses, edge cases |
-| `ThemeProvider.test.tsx` | Default dark theme, `localStorage` restore on mount, dark↔light toggle, multi-toggle persistence |
-| `Card3D.test.tsx` | Renders children, applies perspective transform on `mouseMove`, resets on `mouseLeave`, glare overlay visibility |
-| `Hero.test.tsx` | Availability badge, both headline lines, CTA `href` attributes, all four stat values and labels |
-| `Contact.test.tsx` | Field rendering, all client-side validation paths, successful submission, Formspree server error, network failure, loading/disabled state, exact POST payload |
-| `Navbar.test.tsx` | Logo anchor, all nav link `href` values, Hire Me link, theme toggle button, mobile hamburger open/close, language dropdown appearance |
 
 ---
 
-## Building for Production
+### What each test file covers
 
-```bash
-npm run build
-```
-
-Next.js compiles the application into `.next/standalone/` — a self-contained Node.js server with only the files needed at runtime. No `node_modules` copy is required in the production image.
-
----
-
-## Docker
-
-### Build the image
-
-```bash
-docker build -t moka-software-business .
-```
-
-The `Dockerfile` uses a three-stage build to minimise the final image size:
-
-| Stage | Base image | Responsibility |
+| Test file | Component | What is tested |
 |---|---|---|
-| `deps` | `node:20-alpine` | Install production and dev dependencies via `npm ci` |
-| `builder` | `node:20-alpine` | Compile the Next.js standalone output |
-| `runner` | `node:20-alpine` | Minimal runtime — copies only the compiled artefact, runs as non-root `nextjs` user |
+| `utils.test.ts` | `lib/utils.ts` | `isValidEmail` — valid, malformed, and edge-case addresses |
+| `ThemeProvider.test.tsx` | `ThemeProvider` | Default dark theme, `localStorage` restore, dark ↔ light toggle |
+| `Card3D.test.tsx` | `Card3D` | Renders children, perspective on `mouseMove`, reset on `mouseLeave`, glare overlay |
+| `Hero.test.tsx` | `Hero` | Availability badge, headline copy, CTA `href` values, stat labels |
+| `Contact.test.tsx` | `Contact` | All validation paths, Formspree success/error/network failure, loading state |
+| `Navbar.test.tsx` | `Navbar` | Logo anchor, nav `href` values, theme toggle, mobile drawer, locale dropdown |
+| `About.test.tsx` | `About` | Headline, section label, bio text, skill tags, profile image, "Available" badge |
+| `Services.test.tsx` | `Services` | Headline, labels, first 6 cards visible, expand/collapse toggle |
+| `Pricing.test.tsx` | `Pricing` | Headline, all 3 tabs, popular badge, CTA text, scope note |
+| `Projects.test.tsx` | `Projects` | Project titles, tech tags, modal open/close, modal CTA link |
+| `Footer.test.tsx` | `Footer` | Brand logo, copyright text, all 4 nav links and their `href` values |
+| `BottomNav.test.tsx` | `BottomNav` | 5 nav items, correct `href` values, `fixed bottom-0` positioning, `md:hidden` |
 
-> The final image is approximately **150 MB** — no dev dependencies, no build cache, Alpine base.
+---
 
-### Run locally
+## Docker (local container)
+
+Use this to replicate the exact production image on your machine.
+
+### Step 1 — Build the image
+
+```bash
+docker build \
+  --build-arg NEXT_PUBLIC_FORMSPREE_FORM_ID=your_form_id \
+  -t moka-software-business \
+  .
+```
+
+### Step 2 — Run the container
 
 ```bash
 docker run -p 3000:3000 moka-software-business
@@ -280,256 +392,137 @@ docker run -p 3000:3000 moka-software-business
 
 Open [http://localhost:3000](http://localhost:3000).
 
----
+### How the multi-stage build works
 
-## CI/CD — Jenkins → AWS
+| Stage | Base image | What happens |
+|---|---|---|
+| `deps` | `node:20-alpine` | `npm ci` — installs all dependencies |
+| `builder` | `node:20-alpine` | `npm run build` — compiles Next.js standalone output |
+| `runner` | `node:20-alpine` | Copies only the runtime files; drops dev deps and build cache |
 
-The complete pipeline is defined in [`Jenkinsfile`](./Jenkinsfile). Every push to any branch triggers a build. Deployment to AWS only happens on merges to `main`.
-
-### Pipeline flow
-
-```
- Developer
-     │
-     │  git push origin <branch>
-     ▼
- GitHub Repository
-     │
-     │  Webhook  POST /github-webhook/
-     ▼
- Jenkins
-     │
-     ├── Stage 1 · Checkout ────────────── Clone repo · log branch + commit SHA
-     ├── Stage 2 · Install ──────────────── npm ci
-     ├── Stage 3 · Lint ─────────────────── npm run lint
-     ├── Stage 4 · Build ────────────────── npm run build        (all branches)
-     │
-     │  ┌──────────────────────────────────────────────────────────┐
-     │  │  main branch only                                        │
-     │  ├──────────────────────────────────────────────────────────┤
-     ├── Stage 5 · Docker Build & Push                             │
-     │       Authenticate to Amazon ECR                            │
-     │       Create ECR repository if absent  (idempotent)         │
-     │       docker build → tag as <commit-sha> and latest         │
-     │       docker push both tags                                  │
-     │                                                              │
-     └── Stage 6 · Deploy to ECS                                   │
-             Fetch current task definition                          │
-             Inject new image URI into container definition         │
-             Register new task definition revision                  │
-             aws ecs update-service  (rolling deployment)           │
-             aws ecs wait services-stable                           │
-             └──────────────────────────────────────────────────────┘
-```
-
-> Pull request branches execute **stages 1–4 only** (CI validation). Nothing is pushed to ECR or deployed to AWS.
+> Final image: ~150 MB. Non-root `nextjs` user for security.
 
 ---
 
-### Jenkins setup
+## CI/CD Pipeline
 
-#### 1. Store AWS credentials
+The pipeline is defined in [`Jenkinsfile`](./Jenkinsfile) and powered by the shared library [`jenkins-nextjs-lib`](https://github.com/mokasofthub/jenkins-nextjs-lib).
 
-Navigate to **Manage Jenkins → Credentials → Global** and add two **Secret text** entries:
+Every push and pull request triggers **CI** (stages 1–5).  
+Deployment to AWS runs **only on merges to `main`**.
 
-| Credential ID | Value |
-|---|---|
-| `aws-access-key-id` | Your IAM access key ID |
-| `aws-secret-access-key` | Your IAM secret access key |
+### Pipeline stages
 
-#### 2. Install required plugins
+| Stage | Runs on | Description |
+|---|---|---|
+| **Checkout** | All branches | Clone repo, log branch + commit SHA |
+| **Install** | All branches | `npm ci --prefer-offline` |
+| **Lint** | All branches | `npm run lint` — fails fast on any ESLint error |
+| **Test** | All branches | `npm test` — fails fast if any test fails |
+| **Build** | All branches | `npm run build` — validates TypeScript and SSR output |
+| **Docker Build & Push** | `main` only | Build image with `<sha>` + `latest` tags, push to ECR |
+| **Deploy to ECS** | `main` only | Register new task def revision → `update-service` → wait stable |
+| **Invalidate CloudFront** | `main` only | `/*` invalidation (skipped if `cloudfrontDistributionId` not set) |
 
-| Plugin | Purpose |
-|---|---|
-| **GitHub** | Receives webhook events · provides `GIT_BRANCH` / `GIT_COMMIT` |
-| **Pipeline** | Declarative pipeline support (pre-installed on most Jenkins) |
-| **Credentials Binding** | Exposes secrets as environment variables inside `withCredentials` |
+### Jenkins credentials required
 
-#### 3. Create the job
+| Credential ID | Type | Used for |
+|---|---|---|
+| `aws-access-key-id` | Secret text | AWS CLI authentication |
+| `aws-secret-access-key` | Secret text | AWS CLI authentication |
+| `formspree-form-id` | Secret text | Injected as `NEXT_PUBLIC_FORMSPREE_FORM_ID` at Docker build time |
 
-1. **New Item** → choose **Pipeline** (single branch) or **Multibranch Pipeline**
-2. Set **Source** to GitHub and provide your repository URL
-3. Set **Script path** to `Jenkinsfile`
-4. Enable **"GitHub hook trigger for GITScm polling"**
-
-#### 4. Configure the GitHub webhook
-
-In your GitHub repository → **Settings → Webhooks → Add webhook**:
-
-| Field | Value |
-|---|---|
-| Payload URL | `http://<your-jenkins-host>/github-webhook/` |
-| Content type | `application/json` |
-| Trigger | **Just the push event** |
-
-#### 5. Agent requirements
-
-The Jenkins build agent must have the following installed:
-
-- `node` ≥ 20 and `npm`
-- `docker` (daemon must be accessible by the Jenkins user)
-- `aws` CLI v2
-- `python3`
-
-#### 6. Update pipeline environment variables
-
-Edit the `environment {}` block at the top of `Jenkinsfile`:
-
-```groovy
-AWS_REGION     = 'us-east-1'              // Target AWS region
-ECR_REPOSITORY = 'moka-software-business' // ECR repository name
-ECS_CLUSTER    = 'moka-cluster'           // ECS cluster name
-ECS_SERVICE    = 'moka-service'           // ECS service name
-```
-
----
-
-### IAM policy
-
-The IAM user whose keys are stored in Jenkins requires the following minimum permissions:
+### IAM permissions required
 
 ```json
 {
   "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ecr:GetAuthorizationToken",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:InitiateLayerUpload",
-        "ecr:UploadLayerPart",
-        "ecr:CompleteLayerUpload",
-        "ecr:PutImage",
-        "ecr:CreateRepository",
-        "ecr:DescribeRepositories",
-        "ecs:DescribeTaskDefinition",
-        "ecs:RegisterTaskDefinition",
-        "ecs:UpdateService",
-        "ecs:DescribeServices",
-        "iam:PassRole"
-      ],
-      "Resource": "*"
-    }
-  ]
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": [
+      "ecr:GetAuthorizationToken",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:InitiateLayerUpload",
+      "ecr:UploadLayerPart",
+      "ecr:CompleteLayerUpload",
+      "ecr:PutImage",
+      "ecr:CreateRepository",
+      "ecr:DescribeRepositories",
+      "ecr:PutLifecyclePolicy",
+      "ecs:DescribeTaskDefinition",
+      "ecs:RegisterTaskDefinition",
+      "ecs:UpdateService",
+      "ecs:DescribeServices",
+      "iam:PassRole",
+      "cloudfront:CreateInvalidation",
+      "sts:GetCallerIdentity"
+    ],
+    "Resource": "*"
+  }]
 }
 ```
 
 ---
 
-## AWS Cost Guide
-
-This section documents how the pipeline and AWS resources are configured to keep costs as low as possible for a portfolio / low-traffic site.
-
-### Monthly cost estimate
-
-| Resource | Spec | Est. cost / month |
-|---|---|---|
-| ECS Fargate task | 256 CPU · 512 MB · always-on | ~$9 |
-| ECR storage | ≤ 5 images × ~150 MB | < $0.10 |
-| CloudFront | Low-traffic portfolio | ~$1–2 |
-| Route 53 hosted zone | 1 zone | ~$0.50 |
-| ALB | **Not used** | $0 |
-| **Total** | | **~$11–12 / month** |
-
-> Prices based on `us-east-1` (Virginia) as of 2025. Actual charges depend on traffic volume and AWS pricing changes.
-
----
-
-### Cost decisions baked into the pipeline
-
-#### 1. ECR lifecycle policy — automatic image expiry
-
-Old container images accumulate at **$0.10 / GB / month**. The pipeline applies a lifecycle policy that retains only the **5 most recent images** and expires everything older, keeping storage costs negligible.
-
-This is applied idempotently on every `main` push — no manual setup required.
-
-#### 2. Single-task rolling deployment
-
-With `desired count = 1`, the default ECS deployment config (`minimumHealthyPercent=100`) forces ECS to spin up a **second task** alongside the old one during every deploy, briefly doubling Fargate compute cost.
-
-The pipeline uses:
-
-```
---deployment-configuration minimumHealthyPercent=0,maximumPercent=100
-```
-
-This tells ECS to **stop the old task first**, then start the new one. The portfolio experiences ~5 seconds of downtime per deploy, which is an acceptable trade-off for a personal site.
-
-#### 3. No Application Load Balancer
-
-An ALB costs a flat **~$16–18 / month** regardless of traffic — nearly twice the Fargate compute cost for this setup. The recommended architecture avoids one entirely:
-
-```
-Internet → CloudFront → ECS public IP  (direct, no ALB)
-```
-
-CloudFront handles HTTPS termination, caching, and DDoS protection. For a static or low-dynamic portfolio this is sufficient and far cheaper.
-
-> If you need sticky sessions or multiple tasks in the future, add an ALB then. For a single-task portfolio, CloudFront → ECS IP is the right choice.
-
-#### 4. Minimum Fargate task sizing
-
-Configure your ECS task definition with the **minimum Fargate allocation**. Next.js standalone with ~150 MB RAM idle is well within limits:
-
-| CPU units | Memory | vCPU | Cost / month |
-|---|---|---|---|
-| 256 | 512 MB | 0.25 | ~$9 |
-| 512 | 1 GB | 0.5 | ~$18 |
-| 1024 | 2 GB | 1 | ~$36 |
-
-Use **256 CPU / 512 MB** unless profiling shows higher memory usage.
-
----
-
-### Recommended AWS setup (cheapest viable architecture)
-
-```
-Route 53 (DNS)
-    │
-    ▼
-CloudFront distribution  ←  HTTPS, caching, DDoS protection  (~$1–2/month)
-    │
-    ▼
-ECS Fargate task         ←  256 CPU / 512 MB / desired-count=1  (~$9/month)
-    │  (public subnet, security group: allow 80/443 from CloudFront prefix list)
-    ▼
-Amazon ECR               ←  lifecycle policy: keep last 5 images  (~$0.10/month)
-```
-
-**What to avoid:**
-- ❌ Application Load Balancer — adds ~$16/month for a single-task portfolio
-- ❌ NAT Gateway — ~$32/month; use a public subnet instead
-- ❌ Multiple AZs for desired-count=1 — no benefit, just doubles data transfer
-
----
-
-### Alternative: AWS App Runner (~$1–5 / month)
-
-If you want to go even cheaper, **AWS App Runner** is a fully-managed service that:
-
-- Requires no ECS cluster, no task definitions, no networking setup
-- Scales **to zero** when idle (no traffic = near-zero compute cost)
-- Provides built-in HTTPS with a managed certificate
-- Deploys directly from an ECR image
-
-Switching to App Runner requires replacing the `Deploy to ECS` stage in the `Jenkinsfile` with a single App Runner deploy command. The Docker image and ECR push stages remain unchanged.
-
----
-
 ## Environment Variables
-
-Copy `.env.example` to `.env.local` for local overrides. This file is gitignored and never committed.
 
 | Variable | Required | Notes |
 |---|---|---|
-| `NEXT_PUBLIC_FORMSPREE_FORM_ID` | Yes | Your Formspree form ID (e.g. `xabcdefg`). Injected at build time via Docker `--build-arg`. For local dev, add to `.env.local`. |
+| `NEXT_PUBLIC_FORMSPREE_FORM_ID` | Yes | Your Formspree form ID. Baked into the JS bundle at build time. |
 
-Create `.env.local` for local development (gitignored):
+**For local development** — create `.env.local` (gitignored, never committed):
 
-```bash
+```env
 NEXT_PUBLIC_FORMSPREE_FORM_ID=your_form_id_here
 ```
+
+**For Docker** — pass as a build argument:
+
+```bash
+docker build --build-arg NEXT_PUBLIC_FORMSPREE_FORM_ID=your_form_id .
+```
+
+**For Jenkins** — store as a `Secret text` credential with ID `formspree-form-id`. The pipeline injects it automatically via `--build-arg`.
+
+---
+
+## AWS Cost Guide
+
+### Monthly estimate (`us-east-1`)
+
+| Resource | Spec | Est. / month |
+|---|---|---|
+| ECS Fargate | 256 CPU · 512 MB · always-on · desired-count=1 | ~$9 |
+| ECR | ≤ 5 images × ~150 MB | < $0.10 |
+| CloudFront | Low-traffic portfolio | ~$1–2 |
+| Route 53 | 1 hosted zone | ~$0.50 |
+| ALB | **Not used** | $0 |
+| **Total** | | **~$11–12 / month** |
+
+### Key cost decisions
+
+- **ECR lifecycle policy** — retains only the 5 most recent images; applied idempotently on every `main` push.
+- **`minimumHealthyPercent=0`** — stops the old task before starting the new one (~5 s downtime). Avoids the cost of running two concurrent Fargate tasks during a rolling deploy.
+- **No Application Load Balancer** — saves ~$16–18/month. CloudFront handles HTTPS, caching, and DDoS protection instead.
+- **Minimum Fargate sizing** — 256 CPU / 512 MB is sufficient for a Next.js standalone portfolio.
+
+```
+  DNS (Route 53 / GoDaddy)
+          │
+          ▼
+  CloudFront        ← HTTPS · edge caching · DDoS  (~$1–2/month)
+          │
+          ▼
+  ECS Fargate       ← 256 CPU / 512 MB / desired-count=1  (~$9/month)
+          │
+          ▼
+  Amazon ECR        ← keep last 5 images  (<$0.10/month)
+```
+
+**Avoid:**
+- ❌ Application Load Balancer — adds ~$16/month for a single-task portfolio
+- ❌ NAT Gateway — adds ~$32/month; use a public subnet instead
+- ❌ Multi-AZ with desired-count=1 — no availability benefit, doubles data transfer cost
 
 ---
 
@@ -538,15 +531,14 @@ NEXT_PUBLIC_FORMSPREE_FORM_ID=your_form_id_here
 | File | What to change |
 |---|---|
 | `src/app/[locale]/layout.tsx` | Page title, meta description, Open Graph tags |
-| `messages/en.json` *(and other locales)* | All visible copy — headlines, bios, service titles, pricing |
-| `src/app/globals.css` | Design tokens (`--bg-base`, `--text-primary`, etc.) for both themes |
-| `src/app/components/Contact.tsx` | Contact email address, LinkedIn URL, Formspree form ID |
+| `messages/en.json` *(+ other locales)* | All visible copy — headlines, bios, service titles, pricing |
+| `src/app/globals.css` | Design tokens for both themes (`--bg-base`, `--text-primary`, etc.) |
+| `src/app/components/Contact.tsx` | Contact email, LinkedIn URL |
 | `tailwind.config.ts` | Breakpoints, font families, border radii |
-| `Jenkinsfile` | `AWS_REGION`, `ECR_REPOSITORY`, `ECS_CLUSTER`, `ECS_SERVICE` |
+| `Jenkinsfile` | `ecrRepository`, `ecsCluster`, `ecsService` — change for a different deployment target |
 
 ---
 
 ## License
 
-[MIT](./LICENSE) — free to use and adapt for your own portfolio.
-
+[MIT](./LICENSE)

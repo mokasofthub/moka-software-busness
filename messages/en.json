@@ -40,6 +40,8 @@
     "label": "What I Do",
     "headline": "End-to-End Engineering Services",
     "subheading": "From frontend to cloud infrastructure — I cover the full delivery lifecycle.",
+    "show_more": "See {count} more services",
+    "show_less": "Show less",
     "items": [
       {
         "title": "CI/CD Pipeline Automation",
@@ -166,105 +168,117 @@
   },
 
   "pricing": {
-    "label": "Pricing",
-    "headline": "Transparent, Value-Based Pricing",
-    "subheading": "US market rates for Principal-level engineering. All prices in USD.",
-    "tab_quick": "Quick Fixes",
-    "tab_packages": "Project Packages",
-    "tab_retainer": "Hourly & Retainer",
-    "popular": "Most Popular",
-    "note_estimate": "Final price depends on scope. Free scoping call included.",
+    "label": "What We Build",
+    "headline": "A Service for Every Project",
+    "subheading": "Scope drives pricing. Every engagement starts with a conversation — no surprises, no hidden fees.",
+    "tab_web": "Web & Apps",
+    "tab_engineering": "Engineering",
+    "tab_support": "Support & Mentorship",
+    "popular": "Most Requested",
+    "note_estimate": "All pricing is scope-based. Book a free discovery call to get a tailored quote.",
     "cta_start": "Get Started",
     "cta_quote": "Request a Quote",
-    "cta_book": "Book a Call",
+    "cta_book": "Make a Request",
 
-    "quick_items": [
+    "web_items": [
       {
-        "icon": "⚡",
-        "title": "Fix CI/CD Pipeline",
-        "price": "$999",
-        "description": "Debug and repair a broken CI/CD pipeline. Includes root-cause analysis and documentation.",
-        "items": ["GitHub Actions / Jenkins / GitLab CI", "Pipeline audit & diagnosis", "Fix + verification", "Delivery in 2–3 business days"]
-      },
-      {
-        "icon": "🐳",
-        "title": "Dockerize Your App",
-        "price": "$699",
-        "description": "Containerize your existing application with multi-stage Dockerfiles and a docker-compose setup.",
-        "items": ["Multi-stage Dockerfile", "docker-compose for local dev", "Image size optimization", "Push to registry (Docker Hub / ECR)"]
-      },
-      {
-        "icon": "☁️",
-        "title": "AWS / GCP Setup",
-        "price": "$899",
-        "description": "Provision and configure a production-ready cloud environment with VPC, IAM, and basic networking.",
-        "items": ["VPC + subnets + security groups", "IAM roles & least-privilege policy", "EC2 / Cloud Run instance setup", "Basic monitoring & alerts"]
-      },
-      {
-        "icon": "🐛",
-        "title": "Fix Frontend Bug",
-        "price": "$599",
-        "description": "Diagnose and fix a critical bug or performance issue in your React, Vue, or Next.js app.",
-        "items": ["Root cause analysis", "React / Vue / Next.js / Angular", "Fix + regression test", "Delivery in 1–2 business days"]
-      }
-    ],
-
-    "package_items": [
-      {
-        "icon": "🔄",
-        "title": "CI/CD Automation",
-        "price": "$3,500–$8,000",
-        "description": "End-to-end pipeline automation from code commit to production deployment.",
-        "items": ["Multi-stage pipeline design", "Test, build, deploy automation", "Secrets management", "Rollback & alerting"]
-      },
-      {
-        "icon": "☁️",
-        "title": "Cloud Migration",
-        "price": "$6,000–$15,000",
-        "description": "Lift-and-shift or re-architect your workloads to AWS, GCP, or Azure.",
-        "items": ["Architecture design & planning", "IaC with Terraform", "Zero-downtime cutover", "Cost optimization review"]
-      },
-      {
-        "icon": "☸️",
-        "title": "Kubernetes Platform",
-        "price": "$4,000–$9,000",
-        "description": "Production-grade Kubernetes cluster with everything you need to operate confidently.",
-        "items": ["Cluster setup (EKS / GKE / AKS)", "Helm charts & GitOps", "Autoscaling & resource limits", "Observability stack"]
+        "icon": "🎓",
+        "title": "College & University Websites",
+        "description": "Custom institutional websites for colleges, faculties, or student associations — modern, accessible, and easy to maintain.",
+        "items": ["Program catalog & course pages", "News, events & announcements", "Staff directory & admin panel", "Fully responsive, accessible design"]
       },
       {
         "icon": "🌐",
-        "title": "Full-Stack Web App",
-        "price": "from $5,000",
-        "description": "Custom web application built with modern technologies — from design handoff to production launch.",
-        "items": ["React / Next.js frontend", "Node.js / Java / Python API", "Database design & migrations", "CI/CD pipeline included"],
-        "popular": true
+        "title": "Business & Portfolio Sites",
+        "description": "From landing pages to full corporate websites. Built fast, optimized for SEO, and designed to convert.",
+        "items": ["Next.js or static site", "CMS integration (Sanity, Strapi…)", "SEO & performance optimized", "Multi-language support"]
       },
       {
         "icon": "📱",
-        "title": "Mobile App (iOS & Android)",
-        "price": "from $8,500",
-        "description": "Cross-platform mobile app shipped to both the App Store and Google Play.",
+        "title": "Mobile Applications",
+        "description": "Cross-platform mobile apps for iOS and Android — from MVP to a polished production release.",
         "items": ["React Native or Flutter", "iOS + Android from one codebase", "Backend API integration", "App Store & Play Store submission"]
+      },
+      {
+        "icon": "🏋️",
+        "title": "Sports Facility Web App",
+        "description": "Custom platforms for gyms, sport clubs, and complexes — bookings, memberships, schedules, and coach portals.",
+        "items": ["Booking & scheduling system", "Membership & billing management", "Coach / trainer dashboard", "Mobile-first design"],
+        "popular": true
+      },
+      {
+        "icon": "🔌",
+        "title": "REST & GraphQL APIs",
+        "description": "Well-designed APIs for complex domains — sport complexes, SaaS platforms, or any custom business logic.",
+        "items": ["RESTful or GraphQL design", "Auth (JWT, OAuth2)", "Rate limiting & documentation", "OpenAPI / Swagger spec"]
+      },
+      {
+        "icon": "🛒",
+        "title": "E-Commerce & Marketplaces",
+        "description": "Online stores and marketplace platforms, from simple product catalogs to complex multi-vendor setups.",
+        "items": ["Product catalog & cart", "Payment gateway (Stripe, PayPal)", "Order management", "Admin dashboard"]
       }
     ],
 
-    "retainer_items": [
+    "engineering_items": [
       {
-        "icon": "⏱",
-        "title": "Hourly Rate",
-        "price": "$150–$200",
-        "price_suffix": "/ hour",
-        "description": "Ideal for short-term projects, audits, or time-and-materials engagements.",
-        "items": ["No long-term commitment", "Weekly time reports", "Available across US time zones", "Minimum 5 hours / engagement"]
+        "icon": "🔄",
+        "title": "CI/CD Pipeline Automation",
+        "description": "End-to-end pipeline from code commit to production — automated tests, builds, deploys, and rollbacks.",
+        "items": ["GitHub Actions / Jenkins / GitLab CI", "Multi-stage pipeline design", "Secrets management", "Rollback & alerting"]
+      },
+      {
+        "icon": "☁️",
+        "title": "Cloud Architecture",
+        "description": "Production-ready cloud environments on AWS, GCP, or Azure — designed for reliability and cost efficiency.",
+        "items": ["VPC, IAM, networking setup", "IaC with Terraform", "Zero-downtime deployment", "Cost optimization review"]
+      },
+      {
+        "icon": "☸️",
+        "title": "Kubernetes & Containers",
+        "description": "Containerization and Kubernetes cluster setup for scalable, observable production workloads.",
+        "items": ["Docker multi-stage builds", "EKS / GKE / AKS cluster", "Helm charts & GitOps", "Autoscaling & observability"]
+      },
+      {
+        "icon": "🏗️",
+        "title": "Full-Stack Architecture",
+        "description": "From monolith to microservices — design and build scalable backend systems that grow with your product.",
+        "items": ["System design & ADRs", "Node.js / Java / Python / Go", "Database design & migrations", "Message queues & async patterns"],
+        "popular": true
+      },
+      {
+        "icon": "📐",
+        "title": "Technical Architecture Review",
+        "description": "Audit your existing system and get a clear roadmap for improving scalability, security, and maintainability.",
+        "items": ["Codebase & infra audit", "Bottleneck & risk identification", "Written recommendations", "Follow-up Q&A session"]
+      }
+    ],
+
+    "support_items": [
+      {
+        "icon": "🎒",
+        "title": "Student Project Support",
+        "description": "Helping students bring their academic projects to life — any language, any stack. From idea to working demo.",
+        "items": ["Any programming language", "Web, mobile, or backend project", "Guided development sessions", "Code review & corrections"],
+        "popular": true
+      },
+      {
+        "icon": "🔍",
+        "title": "Code Review & Refactor",
+        "description": "Deep-dive review of your codebase with actionable feedback on architecture, security, and best practices.",
+        "items": ["Security & bug review", "Performance analysis", "Refactoring roadmap", "Written detailed report"]
+      },
+      {
+        "icon": "🐛",
+        "title": "Debugging & Bug Fixes",
+        "description": "Stuck on a tricky bug? Fast turnaround diagnosis and fix for frontend, backend, or infrastructure issues.",
+        "items": ["Root cause analysis", "React / Vue / Next.js / Node", "Cloud & DevOps issues", "Fix + regression test"]
       },
       {
         "icon": "📅",
-        "title": "Monthly Retainer",
-        "price": "from $4,500",
-        "price_suffix": "/ month",
-        "description": "Dedicated ongoing engineering bandwidth — code, architecture, mentorship, and delivery.",
-        "items": ["20–40 hrs / month guaranteed", "Priority response time", "Architecture reviews included", "Cancel anytime with 30-day notice"],
-        "popular": true
+        "title": "Ongoing Retainer",
+        "description": "Dedicated engineering bandwidth on a monthly basis — code, architecture, mentorship, and delivery.",
+        "items": ["Flexible hours per month", "Priority response time", "Architecture reviews included", "Cancel anytime"]
       }
     ]
   },

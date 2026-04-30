@@ -15,7 +15,7 @@ export default function BackToTop() {
     <a
       href="#hero"
       aria-label="Back to top"
-      className={`fixed bottom-7 right-7 z-50 w-11 h-11 rounded-full gradient-bg text-white flex items-center justify-center shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 ${
+      className={`fixed bottom-20 md:bottom-7 right-7 z-50 w-11 h-11 rounded-full gradient-bg text-white flex items-center justify-center shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 ${
         visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
     >

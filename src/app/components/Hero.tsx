@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 const STATS = [
@@ -75,15 +76,17 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Stats — card grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {STATS.map((stat) => (
-                <div
-                  key={stat.labelKey}
-                  className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl px-5 py-4 text-center"
-                >
-                  <span className="block font-heading font-bold text-2xl gradient-text">{stat.value}</span>
-                  <p className="text-[var(--text-muted)] text-xs mt-1 leading-snug">{t(stat.labelKey)}</p>
+            {/* Stats — inline bar, no card borders */}
+            <div className="flex flex-wrap gap-x-0 gap-y-4">
+              {STATS.map((stat, i) => (
+                <div key={stat.labelKey} className="flex items-center">
+                  <div className="px-6 first:pl-0 text-center">
+                    <span className="block font-heading font-bold text-2xl gradient-text">{stat.value}</span>
+                    <p className="text-[var(--text-muted)] text-xs mt-0.5 leading-snug whitespace-nowrap">{t(stat.labelKey)}</p>
+                  </div>
+                  {i < STATS.length - 1 && (
+                    <span className="w-px h-8 bg-[var(--border-color)] shrink-0" />
+                  )}
                 </div>
               ))}
             </div>
@@ -91,6 +94,26 @@ export default function Hero() {
 
           {/* ── Right: floating dashboard (xl+ only) ── */}
           <div className="hidden xl:flex flex-col gap-4 animate-float-slow">
+
+            {/* Profile card */}
+            <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5 shadow-[var(--card-shadow)] flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-400/50 shrink-0">
+                <Image
+                  src="/images/profile.png"
+                  alt="Bernard D. Mokalo"
+                  width={128}
+                  height={102}
+                  className="object-cover h-full"
+                  style={{ marginLeft: '0px', marginTop: '0px' }}
+                  priority
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[var(--text-primary)]">Bernard D. Mokalo</p>
+                <p className="text-xs text-cyan-400 font-medium">Principal Engineer</p>
+                <p className="text-[10px] text-[var(--text-muted)] mt-0.5">DevOps · Cloud · Full-Stack</p>
+              </div>
+            </div>
 
             {/* Pipeline card */}
             <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5 shadow-[var(--card-shadow-hover)]">
