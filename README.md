@@ -5,6 +5,10 @@
 <p><strong>Production-grade Next.js 14 portfolio &middot; Containerised &middot; Automated CI/CD to AWS ECS Fargate</strong></p>
 
 <p>
+  <a href="https://mokasoftwarebusness.com"><img src="https://img.shields.io/badge/Live-mokasoftwarebusness.com-00C851?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live site"></a>
+</p>
+
+<p>
   <img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js" alt="Next.js">
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
@@ -102,7 +106,8 @@ Available in **5 languages** &middot; **Dark / light theme** &middot; **Containe
                   → Register new ECS task definition
                   → aws ecs update-service
                   → wait services-stable
-                  → CloudFront cache invalidation
+                  → Update origin.mokasoftwarebusness.com A record (new task IP)
+                  → CloudFront cache invalidation (E2MZ1JOJMAKL7T)
 ```
 
 ### Application layers
@@ -422,7 +427,8 @@ Deployment to AWS runs **only on merges to `main`**.
 | **Build** | All branches | `npm run build` — validates TypeScript and SSR output |
 | **Docker Build & Push** | `main` only | Build image with `<sha>` + `latest` tags, push to ECR |
 | **Deploy to ECS** | `main` only | Register new task def revision → `update-service` → wait stable |
-| **Invalidate CloudFront** | `main` only | `/*` invalidation (skipped if `cloudfrontDistributionId` not set) |
+| **Update Origin IP** | `main` only | Resolves new Fargate task public IP → upserts `origin.mokasoftwarebusness.com` A record in Route 53 |
+| **Invalidate CloudFront** | `main` only | `/*` cache invalidation via distribution `E2MZ1JOJMAKL7T` |
 
 ### Jenkins credentials required
 
@@ -453,8 +459,12 @@ Deployment to AWS runs **only on merges to `main`**.
       "ecs:RegisterTaskDefinition",
       "ecs:UpdateService",
       "ecs:DescribeServices",
+      "ecs:ListTasks",
+      "ecs:DescribeTasks",
+      "ec2:DescribeNetworkInterfaces",
       "iam:PassRole",
       "cloudfront:CreateInvalidation",
+      "route53:ChangeResourceRecordSets",
       "sts:GetCallerIdentity"
     ],
     "Resource": "*"
@@ -494,8 +504,8 @@ docker build --build-arg NEXT_PUBLIC_FORMSPREE_FORM_ID=your_form_id .
 |---|---|---|
 | ECS Fargate | 256 CPU · 512 MB · always-on · desired-count=1 | ~$9 |
 | ECR | ≤ 5 images × ~150 MB | < $0.10 |
-| CloudFront | Low-traffic portfolio | ~$1–2 |
-| Route 53 | 1 hosted zone | ~$0.50 |
+| CloudFront | Distribution `E2MZ1JOJMAKL7T` · low-traffic portfolio | ~$1–2 |
+| Route 53 | Zone `Z060171628JQ5P7XSLA4C` · `mokasoftwarebusness.com` | ~$0.50 |
 | ALB | **Not used** | $0 |
 | **Total** | | **~$11–12 / month** |
 
@@ -507,11 +517,17 @@ docker build --build-arg NEXT_PUBLIC_FORMSPREE_FORM_ID=your_form_id .
 - **Minimum Fargate sizing** — 256 CPU / 512 MB is sufficient for a Next.js standalone portfolio.
 
 ```
-  DNS (Route 53 / GoDaddy)
+  GoDaddy (registrar) → ns-526.awsdns-01.net (Route 53 nameservers)
           │
           ▼
-  CloudFront        ← HTTPS · edge caching · DDoS  (~$1–2/month)
+  Route 53 (Z060171628JQ5P7XSLA4C)
+    mokasoftwarebusness.com  →  Alias  →  dyibh68p1l7w0.cloudfront.net
+    origin.mokasoftwarebusness.com  →  A  →  <ECS task public IP>  (updated each deploy)
           │
+          ▼
+  CloudFront (E2MZ1JOJMAKL7T)  ← HTTPS · edge caching · DDoS  (~$1–2/month)
+    dyibh68p1l7w0.cloudfront.net
+          │  HTTP :3000
           ▼
   ECS Fargate       ← 256 CPU / 512 MB / desired-count=1  (~$9/month)
           │
