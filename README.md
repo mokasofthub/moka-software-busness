@@ -29,6 +29,7 @@ Available in **5 languages** &middot; **Dark / light theme** &middot; **Containe
 
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
+- [Monitoring & Observability](#monitoring--observability)
 - [Project Structure](#project-structure)
 - [Running Locally](#running-locally)
 - [Running Tests Locally](#running-tests-locally)
@@ -51,7 +52,7 @@ Available in **5 languages** &middot; **Dark / light theme** &middot; **Containe
 | **i18n** | [next-intl 3](https://next-intl-docs.vercel.app) | 5 locales: `en` · `fr` · `es` · `de` · `pt` |
 | **Fonts** | Inter · Space Grotesk | Via `next/font/google` (zero layout shift) |
 | **Contact form** | [Formspree](https://formspree.io) | No backend / email server required |
-| **Testing** | Jest 30 · React Testing Library · `@testing-library/user-event` | 12 test files · 96 tests |
+| **Testing** | Jest 30 · React Testing Library · `@testing-library/user-event` | 13 test files · 121 tests |
 | **Container** | Docker — Node 20 Alpine, 3-stage build | Non-root user · ~150 MB final image |
 | **CI/CD** | Jenkins Declarative Pipeline | Shared library [`jenkins-nextjs-lib`](https://github.com/mokasofthub/jenkins-nextjs-lib) |
 | **Image registry** | Amazon ECR | Auto-created · lifecycle: keep last 5 images |
@@ -66,12 +67,19 @@ Available in **5 languages** &middot; **Dark / light theme** &middot; **Containe
 
 ```
   User (browser / mobile)
-          │  HTTPS
+          │  HTTPS  mokasoftwarebusness.com
           ▼
-  ┌───────────────────┐
-  │   CloudFront CDN  │  ← HTTPS termination · edge caching · DDoS protection
-  └───────────────────┘
-          │  HTTP (origin request)
+  ┌───────────────────────────────┐
+  │           Route 53            │  ← DNS · mokasoftwarebusness.com → CloudFront alias
+  │                               │    origin.mokasoftwarebusness.com → ECS task IP
+  └───────────────────────────────┘
+          │
+          ▼
+  ┌───────────────────────────────┐
+  │       CloudFront CDN          │  ← HTTPS termination · edge caching · DDoS protection
+  │  dyibh68p1l7w0.cloudfront.net │    distribution E2MZ1JOJMAKL7T
+  └───────────────────────────────┘
+          │  HTTP :3000  (origin request on cache miss)
           ▼
   ┌─────────────────────────────────────────┐
   │           AWS ECS Fargate               │
@@ -82,9 +90,20 @@ Available in **5 languages** &middot; **Dark / light theme** &middot; **Containe
   └─────────────────────────────────────────┘
           │  pulls image on deploy
           ▼
-  ┌───────────────────┐
-  │   Amazon ECR      │  ← Container image registry · lifecycle: keep last 5
-  └───────────────────┘
+  ┌───────────────────┐        ┌──────────────────────────┐
+  │   Amazon ECR      │        │      Jenkins (EC2)        │
+  │  image registry   │        │  CI/CD · Docker daemon   │
+  │  keep last 5      │        │  GitHub webhook listener  │
+  └───────────────────┘        └──────────────────────────┘
+
+  ─ ─ ─ ─ ─ ─ ─ ─ ─  Observability  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+
+  ┌─────────────────────────────────────────────────────┐
+  │                  Grafana Cloud                      │
+  │  CloudWatch metrics ──► CloudFront · ECS · EC2      │
+  │  Synthetic probes   ──► Uptime · Latency (4 regions)│
+  │  Public dashboard → dbed62c3868144f19ad729f899a32f78│
+  └─────────────────────────────────────────────────────┘
 ```
 
 ### CI/CD flow
@@ -127,6 +146,79 @@ Available in **5 languages** &middot; **Dark / light theme** &middot; **Containe
 
 ---
 
+## Monitoring & Observability
+
+The production infrastructure is fully observable via a **[public Grafana dashboard](https://mokasoftwarebusness.grafana.net/public-dashboards/dbed62c3868144f19ad729f899a32f78)** — no login required.
+
+Metrics are collected from three AWS services via **CloudWatch** and from **Grafana Synthetic Monitoring** (Prometheus-based uptime checks).
+
+### Monitored components
+
+| Component | Role in production |
+|---|---|
+| **CloudFront CDN** | Global edge layer — the public face of the app. Terminates HTTPS, caches static assets at 450+ edge locations, shields the origin from direct internet exposure. Every user request hits CloudFront first. |
+| **ECS Fargate** | Application runtime — runs the Next.js container (256 vCPU · 512 MB). Serverless: AWS manages the host, you only define CPU/RAM. A new task is started on every deploy; the old one is stopped once the new one is healthy. |
+| **Jenkins EC2** | CI/CD engine — self-hosted because it needs the Docker daemon and persistent layer cache. Listens for GitHub webhooks and runs the full pipeline: install → lint → test → build → push to ECR → deploy to ECS → update DNS → invalidate CloudFront. |
+
+---
+
+### Uptime Checks — Global Probe Reachability
+
+![Uptime checks — reachability by probe](docs/screenshots/grafana-uptime-checks.png)
+
+**What it shows:**
+- **Uptime % stat panels** (top) — percentage of successful probes over the last 6 hours for both the portfolio site and Jenkins. Color-coded: green ≥ 99%, yellow ≥ 90%, red below.
+- **Reachability state timeline** (middle) — per-probe UP/DOWN history over time. Each row is one of the 4 global probe locations (London, N. Virginia, Oregon, Singapore). Green = UP, red = DOWN.
+- **Latency time series** (bottom) — response time in milliseconds per probe location. Highlights geographic performance differences and detects latency spikes before they become outages.
+
+**Why it matters:** Synthetic checks run every minute from 4 global locations independently of CloudWatch. They confirm end-to-end reachability from the user's perspective — DNS, CloudFront, ECS, and the app all have to be healthy for a probe to succeed. If the site goes down, the alert fires within 2 minutes with no instrumentation code required in the app.
+
+---
+
+### CloudFront CDN Metrics
+
+![CloudFront metrics — requests and error rate](docs/screenshots/grafana-cloudfront-metrics.png)
+
+**Role:** CloudFront is the only component directly exposed to the internet. It terminates HTTPS, caches responses at the edge, and forwards cache misses to the ECS origin. The app's custom domain (`mokasoftwarebusness.com`) resolves to the CloudFront distribution — ECS is never directly reachable by end users.
+
+**What it shows:**
+- **Request rate** — total HTTP requests served by the CloudFront distribution over time. A sudden drop can indicate a deployment failure or DNS issue; a spike confirms traffic events.
+- **Error rate (4xx / 5xx)** — percentage of requests returning client or server errors. Under normal operation this stays at 0%; any non-zero value triggers investigation.
+- **Bytes transferred** — total data egress from the CDN edge. Useful for estimating bandwidth costs and confirming cache effectiveness (high cache-hit ratio = low origin traffic).
+
+**Why it matters:** Monitoring CloudFront separately from the origin makes it possible to distinguish *where* a problem is. If error rate spikes here but ECS CPU is flat, the issue is at the edge (misconfigured cache rule, bad invalidation). If CloudFront is clean but uptime probes fail, the problem is DNS or the origin itself.
+
+---
+
+### AWS ECS Fargate Metrics
+
+![ECS Fargate — CPU and memory utilisation](docs/screenshots/grafana-ecs-metrics.png)
+
+**Role:** ECS Fargate is where the Next.js application actually runs. Fargate is serverless containers — there are no EC2 instances to patch or scale; AWS manages the underlying infrastructure. The task runs in a public subnet and receives traffic directly from CloudFront on port 3000. On each deploy, Jenkins registers a new task definition revision, triggers `update-service`, and waits for `services-stable`.
+
+**What it shows:**
+- **CPU utilisation %** — percentage of the allocated 256 vCPU units consumed by the running container. A sustained spike above 80% indicates the task definition needs resizing.
+- **Memory utilisation %** — percentage of the allocated 512 MB RAM in use. Crossing 90% risks the OS OOM-killing the container, causing a brief outage until ECS restarts the task.
+- **Running task count** — number of Fargate tasks in the `RUNNING` state. Normally 1; dropping to 0 means the service is completely unavailable.
+
+**Why it matters:** ECS metrics are the ground truth for application health. After a deploy the running task count must return to 1 within ~30 s and CPU should settle below 10% at idle. Any deviation here points to a container crash, a bad image, or insufficient resources.
+
+---
+
+### Jenkins EC2 Metrics
+
+![Jenkins EC2 — CPU and network traffic](docs/screenshots/grafana-ec2-metrics.png)
+
+**Role:** Jenkins runs on a dedicated EC2 instance (not Fargate) because it needs the Docker daemon for building images and benefits from a persistent disk cache for `node_modules` and Docker layers. It is the only infrastructure component not managed by a scaling group, making direct monitoring essential.
+
+**What it shows:**
+- **CPU utilisation %** — CPU load on the EC2 instance. Spikes are expected during active pipeline runs (install, lint, test, build, Docker build). Sustained high CPU *outside* of deploy windows indicates a runaway process or a queued backlog.
+- **Network In / Network Out (bytes)** — bytes received and sent. `NetworkIn` spikes during `npm ci` (pulling node_modules) and Docker layer pulls from ECR. `NetworkOut` spikes during `docker push` to ECR. Correlating these with pipeline logs helps pinpoint slow stages.
+
+**Why it matters:** Unlike ECS, there is no self-healing for this instance. A silent failure — full disk, memory leak, or zombie process — slows or blocks every future deploy without throwing an obvious error. Network Out going to zero outside of a deploy window is an early sign of connectivity loss to ECR or AWS APIs.
+
+---
+
 ## Project Structure
 
 ```
@@ -139,6 +231,13 @@ moka-software-business/
 │   ├── de.json
 │   └── pt.json
 │
+├── docs/
+│   └── screenshots/                 # Grafana dashboard screenshots (referenced in README)
+│       ├── grafana-cloudfront-metrics.png
+│       ├── grafana-ecs-metrics.png
+│       ├── grafana-ec2-metrics.png
+│       └── grafana-uptime-checks.png
+│
 ├── public/                          # Static assets — icons, manifest.json
 │
 ├── src/
@@ -150,13 +249,14 @@ moka-software-business/
 │   │   ├── components/
 │   │   │   ├── About.tsx            # Bio, skill tags, quick-fact cards
 │   │   │   ├── BackToTop.tsx        # Floating scroll-to-top button
-│   │   │   ├── BottomNav.tsx        # Mobile floating navigation bar
+│   │   │   ├── BottomNav.tsx        # Mobile floating navigation bar (6 items)
 │   │   │   ├── BrandLogo.tsx        # Shared logo wordmark
 │   │   │   ├── Card3D.tsx           # Mouse-tracking 3D tilt + glare wrapper
-│   │   │   ├── Contact.tsx          # Client-side validated form → Formspree
+│   │   │   ├── Contact.tsx          # Client-side validated form → Formspree; prefill via event/sessionStorage
 │   │   │   ├── Footer.tsx           # Footer links + copyright
 │   │   │   ├── Hero.tsx             # Name, title, key metrics, primary CTAs
-│   │   │   ├── Navbar.tsx           # Sticky nav · theme toggle · locale switcher · drawer
+│   │   │   ├── Monitoring.tsx       # Infrastructure & Monitoring section — Grafana live dashboard CTA
+│   │   │   ├── Navbar.tsx           # Sticky nav · theme toggle · locale switcher · mobile drawer
 │   │   │   ├── Pricing.tsx          # 3-tab service catalog (web / engineering / support)
 │   │   │   ├── Projects.tsx         # Case study cards + modal
 │   │   │   ├── Services.tsx         # 9-card service grid with expand/collapse
@@ -170,6 +270,7 @@ moka-software-business/
 │   │   │       ├── Contact.test.tsx
 │   │   │       ├── Footer.test.tsx
 │   │   │       ├── Hero.test.tsx
+│   │   │       ├── Monitoring.test.tsx
 │   │   │       ├── Navbar.test.tsx
 │   │   │       ├── Pricing.test.tsx
 │   │   │       ├── Projects.test.tsx
@@ -305,9 +406,9 @@ npm test
 Expected output:
 
 ```
-Test Suites: 12 passed, 12 total
-Tests:       96 passed, 96 total
-Time:        ~2s
+Test Suites: 13 passed, 13 total
+Tests:       121 passed, 121 total
+Time:        ~3s
 ```
 
 ---
@@ -365,14 +466,15 @@ xdg-open coverage/lcov-report/index.html
 | `ThemeProvider.test.tsx` | `ThemeProvider` | Default dark theme, `localStorage` restore, dark ↔ light toggle |
 | `Card3D.test.tsx` | `Card3D` | Renders children, perspective on `mouseMove`, reset on `mouseLeave`, glare overlay |
 | `Hero.test.tsx` | `Hero` | Availability badge, headline copy, CTA `href` values, stat labels |
-| `Contact.test.tsx` | `Contact` | All validation paths, Formspree success/error/network failure, loading state |
-| `Navbar.test.tsx` | `Navbar` | Logo anchor, nav `href` values, theme toggle, mobile drawer, locale dropdown |
+| `Contact.test.tsx` | `Contact` | All validation paths, Formspree success/error/network failure, loading state, clear button, `contact:prefill` event, sessionStorage prefill |
+| `Navbar.test.tsx` | `Navbar` | Logo anchor, nav `href` values, theme toggle (desktop + mobile), mobile drawer open/close, locale dropdown, outside-click close, mobile locale switcher |
 | `About.test.tsx` | `About` | Headline, section label, bio text, skill tags, profile image, "Available" badge |
-| `Services.test.tsx` | `Services` | Headline, labels, first 6 cards visible, expand/collapse toggle |
-| `Pricing.test.tsx` | `Pricing` | Headline, all 3 tabs, popular badge, CTA text, scope note |
-| `Projects.test.tsx` | `Projects` | Project titles, tech tags, modal open/close, modal CTA link |
+| `Services.test.tsx` | `Services` | Headline, labels, first 6 cards visible, expand/collapse toggle, IntersectionObserver card reveal, mobile carousel scroll |
+| `Pricing.test.tsx` | `Pricing` | Headline, all 3 tabs, popular badge, CTA text, scope note, desktop card CTA click, mobile carousel scroll |
+| `Projects.test.tsx` | `Projects` | Project titles, tech tags, modal open/close, modal stopPropagation, modal CTA link, mobile carousel scroll |
+| `Monitoring.test.tsx` | `Monitoring` | Section title, live badge, subtitle, all 7 tech badges, all 4 highlights, Grafana CTA href + target, section id, IntersectionObserver visibility |
 | `Footer.test.tsx` | `Footer` | Brand logo, copyright text, all 4 nav links and their `href` values |
-| `BottomNav.test.tsx` | `BottomNav` | 5 nav items, correct `href` values, `fixed bottom-0` positioning, `md:hidden` |
+| `BottomNav.test.tsx` | `BottomNav` | 6 nav items, correct `href` values, nav icons, `fixed bottom-0` positioning, `md:hidden`, IntersectionObserver active highlight |
 
 ---
 

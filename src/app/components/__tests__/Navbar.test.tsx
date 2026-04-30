@@ -111,4 +111,54 @@ describe('Navbar', () => {
     expect(screen.getByRole('button', { name: /FR/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /ES/i })).toBeInTheDocument();
   });
+
+  it('closes language dropdown after selecting a locale', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+    await user.click(screen.getByRole('button', { name: 'Switch language' }));
+    // Dropdown is open — click a locale option
+    await user.click(screen.getByRole('button', { name: /FR/i }));
+    // Dropdown should be closed — FR button no longer visible
+    expect(screen.queryByRole('button', { name: /FR/i })).not.toBeInTheDocument();
+  });
+
+  it('closes language dropdown when clicking outside', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+    await user.click(screen.getByRole('button', { name: 'Switch language' }));
+    // Dropdown is open — click outside
+    await user.click(document.body);
+    expect(screen.queryByRole('button', { name: /FR/i })).not.toBeInTheDocument();
+  });
+
+  it('mobile theme toggle button is rendered and clickable', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+    // There are two theme toggle buttons (desktop + mobile)
+    const toggles = screen.getAllByRole('button', { name: 'Toggle theme' });
+    expect(toggles.length).toBeGreaterThanOrEqual(2);
+    // Clicking the mobile toggle should not throw
+    await user.click(toggles[1]);
+  });
+
+  it('clicking a nav link inside the mobile menu closes the menu', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+    await user.click(screen.getByRole('button', { name: 'Toggle menu' }));
+    // Click the mobile "About" link
+    const mobileAboutLinks = screen.getAllByRole('link', { name: 'About' });
+    await user.click(mobileAboutLinks[mobileAboutLinks.length - 1]);
+    // Menu should be closed — only desktop link remains
+    expect(screen.getAllByRole('link', { name: 'About' })).toHaveLength(1);
+  });
+
+  it('mobile menu shows locale switcher buttons after opening', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+    await user.click(screen.getByRole('button', { name: 'Toggle menu' }));
+    // All locale buttons should appear inside the mobile menu
+    ['en', 'fr', 'es', 'de', 'pt'].forEach((loc) => {
+      expect(screen.getAllByRole('button', { name: new RegExp(loc, 'i') }).length).toBeGreaterThanOrEqual(1);
+    });
+  });
 });
