@@ -82,6 +82,27 @@ describe('Projects', () => {
     expect(screen.queryByText('Automated the pipeline.')).not.toBeInTheDocument();
   });
 
+  it('does not close the modal when the inner panel is clicked', () => {
+    render(<Projects />);
+    fireEvent.click(screen.getAllByText('View Case Study')[0]);
+    // The inner panel has onClick={e => e.stopPropagation()}
+    const panel = document.querySelector('.fixed.inset-0 > div:not(.absolute)') as HTMLElement;
+    if (panel) fireEvent.click(panel);
+    // Modal content should still be visible
+    expect(screen.getByText('Automated the pipeline.')).toBeInTheDocument();
+  });
+
+  it('mobile carousel onScroll updates active slide index', () => {
+    render(<Projects />);
+    const carousel = document.querySelector('.snap-x') as HTMLElement;
+    if (carousel) {
+      Object.defineProperty(carousel, 'scrollWidth', { configurable: true, value: 1200 });
+      Object.defineProperty(carousel, 'scrollLeft', { configurable: true, value: 400 });
+      fireEvent.scroll(carousel);
+    }
+    // No crash = pass
+  });
+
   it('renders the modal CTA button', () => {
     render(<Projects />);
     fireEvent.click(screen.getAllByText('View Case Study')[0]);

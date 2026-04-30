@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 const NAV_ITEMS = [
-  { key: 'about',    icon: '👤', href: '#about' },
-  { key: 'services', icon: '🔧', href: '#services' },
-  { key: 'projects', icon: '📂', href: '#projects' },
-  { key: 'pricing',  icon: '💰', href: '#pricing' },
-  { key: 'hire',     icon: '✉️', href: '#contact' },
+  { key: 'about',      icon: '👤', href: '#about' },
+  { key: 'services',  icon: '🔧', href: '#services' },
+  { key: 'projects',  icon: '📂', href: '#projects' },
+  { key: 'monitoring', icon: '📊', href: '#monitoring' },
+  { key: 'pricing',   icon: '💰', href: '#pricing' },
+  { key: 'hire',      icon: '✉️', href: '#contact' },
 ] as const;
 
 export default function BottomNav() {
@@ -16,7 +17,7 @@ export default function BottomNav() {
   const [active, setActive] = useState('');
 
   useEffect(() => {
-    const sections = ['about', 'services', 'projects', 'pricing', 'contact'];
+    const sections = ['about', 'services', 'skills', 'monitoring', 'projects', 'pricing', 'contact'];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

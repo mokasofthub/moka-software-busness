@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Contact from '../Contact';
 
@@ -210,5 +210,65 @@ describe('Contact', () => {
     // Clean up: resolve the promise so React doesn't warn about state updates
     resolveRequest({ ok: true, json: async () => ({}) });
     await screen.findByText('Message sent!');
+  });
+
+  // ── Clear button ───────────────────────────────────────────────────────────
+
+  it('clears all fields and resets status when clear button is clicked', async () => {
+    const user = userEvent.setup();
+    render(<Contact />);
+    await user.type(screen.getByLabelText(/^name/i), 'John Doe');
+    await user.type(screen.getByLabelText(/^email/i), 'john@example.com');
+    await user.type(screen.getByLabelText(/^message/i), 'Hello there');
+    // Trigger a validation error so status is 'error'
+    await user.clear(screen.getByLabelText(/^name/i));
+    await user.click(screen.getByRole('button', { name: 'Send Message' }));
+    expect(screen.getByText('Please fill in all required fields.')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: /clear/i }));
+    expect((screen.getByLabelText(/^email/i) as HTMLInputElement).value).toBe('');
+    expect((screen.getByLabelText(/^message/i) as HTMLTextAreaElement).value).toBe('');
+    expect(screen.queryByText('Please fill in all required fields.')).not.toBeInTheDocument();
+  });
+
+  // ── Prefill via contact:prefill event ─────────────────────────────────────
+
+  it('fills service and message fields when contact:prefill event fires', async () => {
+    render(<Contact />);
+    act(() => {
+      window.dispatchEvent(
+        new CustomEvent('contact:prefill', {
+          detail: { serviceHint: 'Web Development', message: 'I need a portfolio site' },
+        })
+      );
+    });
+    await waitFor(() => {
+      expect((screen.getByLabelText(/^message/i) as HTMLTextAreaElement).value).toBe(
+        'I need a portfolio site'
+      );
+    });
+  });
+
+  // ── Prefill via sessionStorage ─────────────────────────────────────────────
+
+  it('reads prefill data from sessionStorage on mount', async () => {
+    sessionStorage.setItem(
+      'contact_prefill',
+      JSON.stringify({ serviceHint: 'Cloud Architecture', message: 'Need cloud help' })
+    );
+    render(<Contact />);
+    await waitFor(() => {
+      expect((screen.getByLabelText(/^message/i) as HTMLTextAreaElement).value).toBe(
+        'Need cloud help'
+      );
+    });
+    // sessionStorage should be cleared after reading
+    expect(sessionStorage.getItem('contact_prefill')).toBeNull();
+  });
+
+  it('handles corrupt sessionStorage prefill data gracefully', () => {
+    sessionStorage.setItem('contact_prefill', 'not-valid-json{{');
+    expect(() => render(<Contact />)).not.toThrow();
+    expect(sessionStorage.getItem('contact_prefill')).toBeNull();
   });
 });
