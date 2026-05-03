@@ -1,6 +1,6 @@
 export type Lang = 'en' | 'fr' | 'es' | 'pt' | 'it' | 'zh' | 'ja' | 'ko'
 export const SUPPORTED_LANGS: Lang[] = ['en', 'fr', 'es', 'pt', 'it', 'zh', 'ja', 'ko']
-export const SUPPORT_EMAIL = 'support@mokasoftwarebusness.com'
+export const SUPPORT_EMAIL = 'contact@mokasoftwarebusness.com'
 export const LAST_UPDATED = 'May 3, 2026'
 
 export function resolveLang(param?: string): Lang {
@@ -37,8 +37,8 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         h: '1. Information We Collect',
         p: 'We collect information you provide directly to us, including:',
         items: [
-          'Account information: name, email address, and password (hashed).',
-          'Financial data: accounts, transactions, budgets, and categories you create.',
+          'Account information: name, email address, and password (hashed and never stored in plain text).',
+          'Manually entered financial data: account labels you name in the app (e.g. Cash, Savings), transaction amounts and notes, budgets, and spending categories.',
           'Device information: device type, operating system, and app version for diagnostics.',
           'Usage data: features used and actions taken within the app to improve the service.',
         ],
@@ -105,7 +105,7 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         p: 'Nous collectons les informations que vous nous fournissez directement, notamment :',
         items: [
           'Informations de compte : nom, adresse e-mail et mot de passe (haché).',
-          'Données financières : comptes, transactions, budgets et catégories que vous créez.',
+          'Données financières saisies manuellement : libellés de comptes que vous nommez (ex. Espèces, Épargne), montants et notes de transactions, budgets et catégories de dépenses.',
           'Informations sur l\'appareil : type, système d\'exploitation et version de l\'application.',
           'Données d\'utilisation : fonctionnalités utilisées pour améliorer le service.',
         ],
@@ -172,7 +172,7 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         p: 'Recopilamos la información que nos proporcionas directamente, incluyendo:',
         items: [
           'Información de cuenta: nombre, correo electrónico y contraseña (cifrada).',
-          'Datos financieros: cuentas, transacciones, presupuestos y categorías que creas.',
+          'Datos financieros introducidos manualmente: etiquetas de cuentas que nombras (ej. Efectivo, Ahorros), importes y notas de transacciones, presupuestos y categorías de gastos.',
           'Información del dispositivo: tipo, sistema operativo y versión de la app.',
           'Datos de uso: funciones utilizadas para mejorar el servicio.',
         ],
@@ -239,7 +239,7 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         p: 'Coletamos as informações que você nos fornece diretamente, incluindo:',
         items: [
           'Informações de conta: nome, endereço de e-mail e senha (criptografada).',
-          'Dados financeiros: contas, transações, orçamentos e categorias que você cria.',
+          'Dados financeiros inseridos manualmente: rótulos de contas que você cria (ex. Dinheiro, Poupança), valores e notas de transações, orçamentos e categorias de gastos.',
           'Informações do dispositivo: tipo, sistema operacional e versão do app.',
           'Dados de uso: recursos utilizados para melhorar o serviço.',
         ],
@@ -306,7 +306,7 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         p: 'Raccogliamo le informazioni che ci fornisci direttamente, tra cui:',
         items: [
           'Informazioni dell\'account: nome, indirizzo e-mail e password (con hash).',
-          'Dati finanziari: conti, transazioni, budget e categorie che crei.',
+          'Dati finanziari inseriti manualmente: etichette dei conti che crei (es. Contanti, Risparmi), importi e note delle transazioni, budget e categorie di spesa.',
           'Informazioni sul dispositivo: tipo, sistema operativo e versione dell\'app.',
           'Dati di utilizzo: funzionalità utilizzate per migliorare il servizio.',
         ],
@@ -373,7 +373,7 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         p: '我们收集您直接提供给我们的信息，包括：',
         items: [
           '账户信息：姓名、电子邮件地址和密码（加密存储）。',
-          '财务数据：您创建的账户、交易、预算和类别。',
+          '手动录入的财务数据：您在应用中命名的账户标签（如现金、储蓄）、交易金额和备注、预算及消费类别。',
           '设备信息：设备类型、操作系统和应用版本。',
           '使用数据：应用内使用的功能，用于改善服务。',
         ],
@@ -440,7 +440,7 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         p: '当社はお客様から直接提供される情報を収集します。これには以下が含まれます：',
         items: [
           'アカウント情報：名前、メールアドレス、パスワード（ハッシュ化）。',
-          '財務データ：お客様が作成したアカウント、取引、予算、カテゴリ。',
+          '手動入力の財務データ：アプリで命名した口座ラベル（例：現金、貯蓄）、取引金額とメモ、予算、支出カテゴリ。',
           'デバイス情報：デバイスの種類、OS、アプリのバージョン。',
           '使用データ：サービス改善のためのアプリ内機能の使用状況。',
         ],
@@ -507,7 +507,7 @@ export const privacy: Record<Lang, PrivacyTranslation> = {
         p: '당사는 귀하가 직접 제공하는 정보를 수집합니다. 여기에는 다음이 포함됩니다:',
         items: [
           '계정 정보: 이름, 이메일 주소, 비밀번호(해시).',
-          '재무 데이터: 귀하가 생성한 계정, 거래, 예산, 카테고리.',
+          '수동으로 입력한 재무 데이터: 앱에서 직접 명명한 계정 레이블(예: 현금, 저축), 거래 금액 및 메모, 예산, 지출 카테고리.',
           '기기 정보: 기기 유형, 운영 체제, 앱 버전.',
           '사용 데이터: 서비스 개선을 위한 앱 내 기능 사용.',
         ],
