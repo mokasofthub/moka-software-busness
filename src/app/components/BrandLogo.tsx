@@ -1,6 +1,11 @@
-export default function BrandLogo() {
+interface BrandLogoProps {
+  href?: string
+  className?: string
+}
+
+export default function BrandLogo({ href = '#hero', className = '' }: BrandLogoProps) {
   return (
-    <a href="#hero" className="flex flex-col leading-none gap-1 font-heading font-semibold text-[var(--text-primary)]">
+    <a href={href} className={`flex flex-col leading-none gap-1 font-heading font-semibold text-[var(--text-primary)] ${className}`}>
       <span className="flex items-center gap-2.5">
         <span className="text-cyan-400 text-xl leading-none">⬡</span>
         <span>MokaSoftware<strong className="text-cyan-400">Busness</strong></span>
