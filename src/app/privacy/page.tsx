@@ -17,7 +17,6 @@ export default function PrivacyPolicy({
 
   return (
     <LegalPageLayout
-      backHref="/"
       title={t.title}
       badge={`${t.subtitle}: ${LAST_UPDATED}`}
       intro={t.intro}

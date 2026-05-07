@@ -7,7 +7,7 @@
 import Link from 'next/link'
 
 // ─── Brand header ───────────────────────────────────────────────────────────
-function BrandHeader({ backHref }: { backHref: string }) {
+function BrandHeader() {
   return (
     <nav
       style={{ borderBottom: '1px solid var(--nav-b)', background: 'var(--nav)' }}
@@ -33,26 +33,6 @@ function BrandHeader({ backHref }: { backHref: string }) {
             <span className="flex-1" style={{ height: 1, background: 'var(--ac-b)' }} />
           </span>
         </Link>
-
-        {/* Back arrow — deep links back into the Financeo app */}
-        <a
-          href="financeo://"
-          className="back-btn flex items-center justify-center rounded-xl w-9 h-9 transition-opacity"
-          style={{
-            color: 'var(--muted)',
-            border: '1px solid var(--card-b)',
-            background: 'var(--card)',
-          }}
-          aria-label="Back to Financeo"
-        >
-          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-            <path
-              fillRule="evenodd"
-              d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </a>
 
       </div>
     </nav>
@@ -200,13 +180,11 @@ export function LegalFooter({
 
 // ─── Main layout wrapper ────────────────────────────────────────────────────
 export default function LegalPageLayout({
-  backHref = '/',
   title,
   badge,
   intro,
   children,
 }: {
-  backHref?: string
   title: string
   badge?: string
   intro?: string
@@ -229,7 +207,7 @@ export default function LegalPageLayout({
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         {/* Header */}
-        <BrandHeader backHref={backHref} />
+        <BrandHeader />
 
         {/* Hero */}
         <header className="max-w-3xl mx-auto px-6 pt-16 pb-12" style={{ borderBottom: '1px solid var(--card-b)' }}>
